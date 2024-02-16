@@ -20,7 +20,7 @@ class StartActivity : AppCompatActivity() {
             val intent = Intent(this@StartActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-            Toast.makeText(this, "Clicker", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
         }
 
     }
