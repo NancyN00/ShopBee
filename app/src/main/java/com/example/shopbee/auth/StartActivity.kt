@@ -18,15 +18,13 @@ class StartActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             val intent = Intent(this@StartActivity, LoginActivity::class.java)
             startActivity(intent)
-            finish()
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+         //   Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
         }
 
         binding.regBtn.setOnClickListener {
             val intent = Intent(this@StartActivity, RegistrationActivity::class.java)
             startActivity(intent)
-            finish()
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
         }
 
     }
