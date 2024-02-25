@@ -69,10 +69,11 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailllogin_txt"
+                android:id="@+id/loginmail_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Email Id"
+                android:inputType="textEmailAddress"
                 android:paddingEnd="30dp" />
 
         </LinearLayout>
@@ -104,7 +105,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passlogin_txt"
+                android:id="@+id/loginpass_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Password"

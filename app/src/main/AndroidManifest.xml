@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,10 +15,10 @@
         android:theme="@style/Theme.ShopBee"
         tools:targetApi="31">
         <activity
-            android:name=".auth.RegistrationActivity"
+            android:name=".auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".auth.LoginActivity"
+            android:name=".auth.RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".auth.StartActivity"

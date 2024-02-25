@@ -69,7 +69,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emaillogin_txt"
+                android:id="@+id/regusernm_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Username"
@@ -104,7 +104,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emaillreg_txt"
+                android:id="@+id/regmail_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Email Id"
@@ -139,7 +139,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passlogin_txt"
+                android:id="@+id/regpass_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Password"
