@@ -13,8 +13,8 @@ import com.google.firebase.ktx.Firebase
 
 class RegistrationActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityRegistrationBinding
-    private lateinit var auth : FirebaseAuth
+    private lateinit var binding: ActivityRegistrationBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
@@ -32,25 +32,25 @@ class RegistrationActivity : AppCompatActivity() {
             val usermail = binding.regmailTxt.text.toString().trim()
             val userpass = binding.regpassTxt.text.toString().trim()
 
-               if (usermail.isEmpty()){
-                   binding.regmailTxt.error = "Email Required"
-                   return@setOnClickListener
-               }
+            if (usermail.isEmpty()) {
+                binding.regmailTxt.error = "Email Required"
+                return@setOnClickListener
+            }
 
-            if(userpass.isEmpty()){
+            if (userpass.isEmpty()) {
                 binding.regpassTxt.error = "Password Required"
                 return@setOnClickListener
             }
             auth.createUserWithEmailAndPassword(usermail, userpass).addOnCompleteListener {
-                 if(it.isSuccessful){
-                     val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
-                     startActivity(intent)
-                     Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show()
+                if (it.isSuccessful) {
+                    val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show()
 
-                 }else{
+                } else {
 
-                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
-                 }
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                }
 
             }
         }

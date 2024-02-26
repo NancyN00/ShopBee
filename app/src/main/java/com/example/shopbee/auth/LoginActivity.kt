@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.shopbee.HomeActivity
 import com.example.shopbee.R
 import com.example.shopbee.databinding.ActivityLoginBinding
 import com.example.shopbee.fragments.HomeFragment
@@ -46,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                 TextUtils.isEmpty(logpass) -> binding.loginpassTxt.error = "Password Required"
 
                 else -> {
-                    val intent = Intent(this@LoginActivity, StartActivity::class.java)
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     startActivity(intent)
                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
                 }
