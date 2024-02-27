@@ -1,4 +1,4 @@
-package com.example.shopbee.data
+package com.example.shopbee.response.data
 
 data class Rating(
     val count: Int,
