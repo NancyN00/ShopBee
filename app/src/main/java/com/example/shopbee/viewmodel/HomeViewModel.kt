@@ -12,14 +12,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel (private val productRepository: GetProductRepository) :ViewModel() {
-
     private val _state = MutableStateFlow(ProductState())
     val state = _state.asStateFlow()
-
     init {
         getProducts()
     }
-
     private fun getProducts() {
               viewModelScope.launch {
                   productRepository.getProducts().collect{ result->
@@ -27,9 +24,7 @@ class HomeViewModel (private val productRepository: GetProductRepository) :ViewM
                           is ProductResource.Loading ->{
                               _state.value = ProductState(
                                   isLoading = true
-                              )
-                          }
-
+                              ) }
                           is ProductResource.Success ->{
                               _state.value = ProductState(
                                   products = result.data ?: emptyList()
