@@ -13,7 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopbee.adapters.ProductCategoriesAdapter
 import com.example.shopbee.databinding.FragmentHomeBinding
-import com.example.shopbee.response.repository.GetProductRepository
 import com.example.shopbee.response.repository.GetRepositoryImplRepository
 import com.example.shopbee.viewmodel.HomeViewModel
 import com.example.shopbee.viewmodel.HomeViewModelFactory
@@ -24,7 +23,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var viewModel : HomeViewModel
     private lateinit var adapter: ProductCategoriesAdapter
-    private val repository : GetProductRepository = GetRepositoryImplRepository()
+    private lateinit var viewModelFactory: HomeViewModelFactory
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,18 +32,17 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
-    }
 
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val repository  = GetRepositoryImplRepository()
         val viewModelFactory = HomeViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
-
         setUpUi()
         getProducts()
-
 
     }
 

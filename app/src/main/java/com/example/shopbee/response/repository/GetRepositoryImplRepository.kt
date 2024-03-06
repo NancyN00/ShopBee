@@ -3,14 +3,13 @@ package com.example.shopbee.response.repository
 import com.example.shopbee.response.data.Product
 import com.example.shopbee.response.productretro.ProductApi
 import com.example.shopbee.util.ProductResource
-import com.example.shopbee.viewmodel.HomeViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
 
-class GetRepositoryImplRepository(private val api: HomeViewModel) : GetProductRepository{
+class GetRepositoryImplRepository(private val api: ProductApi) : GetProductRepository{
 
     override suspend fun getProducts(): Flow<ProductResource<List<Product>>> = flow{
         try {

@@ -8,6 +8,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetProductRepository{
     suspend fun getProducts(): Flow<ProductResource<List<Product>>>
-
-
-    }
+}
