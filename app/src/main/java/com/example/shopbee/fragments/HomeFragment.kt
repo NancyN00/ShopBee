@@ -48,8 +48,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpUi() {
-        adapter = ProductCategoriesAdapter()
         binding.productCateRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        adapter = ProductCategoriesAdapter()
         binding.productCateRv.adapter = adapter
     }
 
@@ -62,20 +62,17 @@ class HomeFragment : Fragment() {
                     }
 
                     if (productstate.products.isNotEmpty()) {
-                        binding.productCateRv.visibility = View.GONE
+                        binding.progressbarProductCate.visibility = View.GONE
                         adapter.setProductCategories(productstate.products)
                     }
 
                     if (productstate.message.isNotBlank()) {
-                        binding.productCateRv.visibility = View.GONE
+                        binding.progressbarProductCate.visibility = View.GONE
                         Toast.makeText(context, productstate.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
-
-
-
 
 }

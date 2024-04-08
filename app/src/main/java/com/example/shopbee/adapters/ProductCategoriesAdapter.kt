@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.shopbee.databinding.ProductItemLayoutBinding
 import com.example.shopbee.response.data.Product
 
-class ProductCategoriesAdapter: RecyclerView.Adapter<ProductCategoriesAdapter.ProductCategoriesViewHolder>() {
+class ProductCategoriesAdapter : RecyclerView.Adapter<ProductCategoriesAdapter.ProductCategoriesViewHolder>() {
 
     private var products = mutableListOf<Product>()
 
@@ -19,18 +19,19 @@ class ProductCategoriesAdapter: RecyclerView.Adapter<ProductCategoriesAdapter.Pr
     }
 
     override fun onBindViewHolder(holder: ProductCategoriesViewHolder, position: Int) {
-      val product = products[position]
+        val product = products[position]
         holder.bind(product)
     }
 
     override fun getItemCount() = products.size
 
-    fun setProductCategories(product: List<Product>){
+    fun setProductCategories(product: List<Product>) {
         this.products = product.toMutableList()
         notifyDataSetChanged()
     }
 
-    inner class ProductCategoriesViewHolder(val binding: ProductItemLayoutBinding) : ViewHolder(binding.root){
+    inner class ProductCategoriesViewHolder(val binding: ProductItemLayoutBinding) :
+        ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
                 Glide.with(binding.root).load(product.image).into(prodItmImg)
