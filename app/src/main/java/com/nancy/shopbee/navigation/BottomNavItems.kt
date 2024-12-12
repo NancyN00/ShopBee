@@ -23,19 +23,14 @@ val listOfItems: List<BottomNavItems> = listOf(
     ),
 
     BottomNavItems(
-        label = "Cart",
-        icon = Icons.Default.ShoppingCart,
-        route = Screens.CartScreen.name
+        label = "Profile",
+        icon = Icons.Default.Person,
+        route = Screens.ProfileScreen.name
     ),
     BottomNavItems(
         label = "Favorite",
         icon = Icons.Default.FavoriteBorder,
         route = Screens.FavoriteScreen.name
-    ),
-    BottomNavItems(
-        label = "Profile",
-        icon = Icons.Default.Person,
-        route = Screens.ProfileScreen.name
     )
 
 

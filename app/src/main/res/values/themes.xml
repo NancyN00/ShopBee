@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ShopBee" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ShopBee" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/ic_launcher_background</item>
+    </style>
+
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/shopbee</item>
+        <item name="windowSplashScreenAnimationDuration">600</item>
+        <item name="postSplashScreenTheme">@style/Theme.ShopBee</item>
+
+    </style>
+
 </resources>

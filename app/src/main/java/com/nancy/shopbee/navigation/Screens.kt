@@ -6,7 +6,6 @@ enum class Screens() {
     RegistrationScreen(),
     LoginScreen(),
     HomeScreen(),
-    CartScreen(),
-    FavoriteScreen(),
-    ProfileScreen()
+    ProfileScreen(),
+    FavoriteScreen()
 }
