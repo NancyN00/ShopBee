@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class BottomNavItems(
-    val title: String,
+    val label: String,
     val icon: ImageVector,
     val route: String
 )
@@ -17,23 +17,23 @@ data class BottomNavItems(
 val listOfItems: List<BottomNavItems> = listOf(
 
     BottomNavItems(
-        title = "Home",
+        label = "Home",
         icon = Icons.Default.Home,
         route = Screens.HomeScreen.name
     ),
 
     BottomNavItems(
-        title = "Cart",
+        label = "Cart",
         icon = Icons.Default.ShoppingCart,
         route = Screens.CartScreen.name
     ),
     BottomNavItems(
-        title = "Favorite",
+        label = "Favorite",
         icon = Icons.Default.FavoriteBorder,
         route = Screens.FavoriteScreen.name
     ),
     BottomNavItems(
-        title = "Profile",
+        label = "Profile",
         icon = Icons.Default.Person,
         route = Screens.ProfileScreen.name
     )

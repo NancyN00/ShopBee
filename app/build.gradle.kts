@@ -95,7 +95,8 @@ dependencies {
     kapt(libs.google.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
-    implementation(libs.androidx.compose.material3)
+
+   // implementation(libs.compose.material)
 
     //serialization
     implementation(libs.kotlinx.serialization.json)
@@ -105,6 +106,7 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
+
 
 
 }
