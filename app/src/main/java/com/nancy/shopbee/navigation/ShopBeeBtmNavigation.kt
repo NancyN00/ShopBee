@@ -20,6 +20,7 @@ import com.nancy.shopbee.navigation.listOfItems
 import com.nancy.shopbee.presentation.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.home.HomeScreen
 import com.nancy.shopbee.presentation.profile.ProfileScreen
+import com.nancy.shopbee.ui.theme.Purple40
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -53,10 +54,10 @@ fun ShopBeeBottomNavigation() {
                             Text(text = bottomNav.label)
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color.Green,
+                            selectedIconColor = Purple40,
                             unselectedIconColor = Color.Black,
                             selectedTextColor = Color.Black,
-                            unselectedTextColor = Color.Green,
+                            unselectedTextColor = Purple40,
                         )
                     )
 

@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.google.dagger.hilt)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -95,6 +96,10 @@ dependencies {
     kapt(libs.google.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
+
+    //firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth.ktx.v2300)
 
    // implementation(libs.compose.material)
 

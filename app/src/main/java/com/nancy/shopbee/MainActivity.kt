@@ -6,12 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.nancy.shopbee.presentation.auth.LoginScreen
-import com.nancy.shopbee.presentation.auth.RegistrationScreen
+import com.nancy.shopbee.navigation.Screens
+import com.nancy.shopbee.presentation.auth.AuthViewModel
+import com.nancy.shopbee.presentation.auth.login.LoginScreen
+import com.nancy.shopbee.presentation.auth.reg.RegistrationScreen
 import com.nancy.shopbee.presentation.onboard.OnboardScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +40,7 @@ fun ShopBeeNavControl(navController: NavHostController) {
         composable(route = "onboard") {
             OnboardScreen(
                 navigateToLogin = {
-                    navController.navigate("login") {
+                    navController.navigate("signin") {
                         launchSingleTop = true
                         popUpTo("onboard") {
                             inclusive = true
@@ -54,6 +57,7 @@ fun ShopBeeNavControl(navController: NavHostController) {
         }
 
         composable(route = "signin") {
+            val viewModel : AuthViewModel = hiltViewModel()
             LoginScreen(
                 navigateToHome = {
                     navController.navigate("home") {
@@ -64,23 +68,39 @@ fun ShopBeeNavControl(navController: NavHostController) {
                     }
                 },
                 navigateToSignUp = {
-                    navController.navigate("signup") {
+
+                    navController.navigate("home") {
                         launchSingleTop = true
                         restoreState = true
                     }
-                }
+                },
+                viewModel = viewModel
             )
         }
 
         composable(route = "signup") {
+            val viewModel : AuthViewModel = hiltViewModel()
+
             RegistrationScreen(
-                navController
-            ) {
-                navController.navigate("signin") {
-                    launchSingleTop = true
-                    restoreState = true
-                }
-            }
+                navController = navController,
+                navigateToSignIn = {
+                    navController.navigate("signin") {
+                        // Navigate and clear back stack
+                        popUpTo(Screens.RegistrationScreen.name) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
+                viewModel = viewModel
+            )
+
+//            RegistrationScreen(
+//                navController
+//            ) {
+//                navController.navigate("signin") {
+//                    launchSingleTop = true
+//                    restoreState = true
+//                }
+//            }
         }
 
         composable(route = "home") {
