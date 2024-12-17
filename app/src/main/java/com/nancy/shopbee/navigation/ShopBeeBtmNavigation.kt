@@ -25,7 +25,6 @@ import com.nancy.shopbee.ui.theme.Purple40
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ShopBeeBottomNavigation() {
-
     val navController: NavHostController = rememberNavController()
 
     Scaffold(
@@ -47,35 +46,32 @@ fun ShopBeeBottomNavigation() {
                         icon = {
                             Icon(
                                 imageVector = bottomNav.icon,
-                                contentDescription = null
+                                contentDescription = null,
                             )
                         },
                         label = {
                             Text(text = bottomNav.label)
                         },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Purple40,
-                            unselectedIconColor = Color.Black,
-                            selectedTextColor = Color.Black,
-                            unselectedTextColor = Purple40,
-                        )
+                        colors =
+                            NavigationBarItemDefaults.colors(
+                                selectedIconColor = Purple40,
+                                unselectedIconColor = Color.Black,
+                                selectedTextColor = Color.Black,
+                                unselectedTextColor = Purple40,
+                            ),
                     )
-
                 }
-
             }
-        }
+        },
     ) { paddingValues ->
 
         NavHost(
             navController = navController,
-            startDestination = Screens.HomeScreen.name
+            startDestination = Screens.HomeScreen.name,
         ) {
-
             composable(route = Screens.HomeScreen.name) {
                 HomeScreen()
             }
-
 
             composable(route = Screens.FavoriteScreen.name) {
                 FavoriteScreen()
@@ -83,11 +79,7 @@ fun ShopBeeBottomNavigation() {
 
             composable(route = Screens.ProfileScreen.name) {
                 ProfileScreen()
-
             }
-
         }
-
     }
-
 }

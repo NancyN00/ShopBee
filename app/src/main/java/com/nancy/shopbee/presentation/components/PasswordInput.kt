@@ -29,41 +29,45 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun PasswordInput(
     modifier: Modifier = Modifier,
-    value : String,
-    onValueChange : (String) -> Unit,
-    placeholder: String
-){
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+)  {
     var passwordVisible by remember { mutableStateOf(false) }
     val borderColor = MaterialTheme.colorScheme.onBackground.copy(.5f)
 
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder ={
+        placeholder = {
             Text(
                 text = placeholder,
-                color = borderColor)
+                color = borderColor,
+            )
         },
         shape = RoundedCornerShape(8.dp),
-        colors = TextFieldDefaults.textFieldColors(
-            unfocusedIndicatorColor = borderColor,
-            containerColor = Color.Transparent
-        ),
+        colors =
+            TextFieldDefaults.textFieldColors(
+                unfocusedIndicatorColor = borderColor,
+                containerColor = Color.Transparent,
+            ),
         trailingIcon = {
             val image = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
-            IconButton(onClick = {passwordVisible = !passwordVisible}) {
+            IconButton(onClick = { passwordVisible = !passwordVisible }) {
                 Icon(imageVector = image, contentDescription = null)
             }
         },
-
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password
-        ),
+        keyboardOptions =
+            KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+            ),
         singleLine = true,
-        visualTransformation = if (!passwordVisible) PasswordVisualTransformation()
-        else VisualTransformation.None,
-        modifier = Modifier.fillMaxWidth()
-
-
+        visualTransformation =
+            if (!passwordVisible) {
+                PasswordVisualTransformation()
+            } else {
+                VisualTransformation.None
+            },
+        modifier = Modifier.fillMaxWidth(),
     )
 }

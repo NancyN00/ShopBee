@@ -11,43 +11,49 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor
-    (private val repository: AuthRepository
-) : ViewModel() {
+class AuthViewModel
+    @Inject
+    constructor(
+        private val repository: AuthRepository,
+    ) : ViewModel() {
+        private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
+        val loginFlow: StateFlow<Resource<FirebaseUser>?> = _loginFlow
 
-    private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val loginFlow : StateFlow<Resource<FirebaseUser>?> = _loginFlow
+        private val _signUpFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
+        val signUpFlow: StateFlow<Resource<FirebaseUser>?> = _signUpFlow
 
-    private val _signUpFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val signUpFlow : StateFlow<Resource<FirebaseUser>?> = _signUpFlow
+        val currentUser: FirebaseUser?
+            get() = repository.currentUser
 
-    val currentUser : FirebaseUser?
-        get()  = repository.currentUser
+        init {
+            if (repository.currentUser != null)
+                {
+                    _loginFlow.value = Resource.Success(repository.currentUser!!)
+                }
+        }
 
-    init {
-        if (repository.currentUser != null){
-            _loginFlow.value = Resource.Success(repository.currentUser!!)
+        fun login(
+            email: String,
+            password: String,
+        ) = viewModelScope.launch {
+            _loginFlow.value = Resource.Loading
+            val result = repository.login(email, password)
+            _loginFlow.value = result
+        }
+
+        fun signUp(
+            name: String,
+            email: String,
+            password: String,
+        ) = viewModelScope.launch {
+            _signUpFlow.value = Resource.Loading
+            val result = repository.signup(name, email, password)
+            _signUpFlow.value = result
+        }
+
+        fun logout()  {
+            repository.logout()
+            _loginFlow.value = null
+            _signUpFlow.value = null
         }
     }
-
-    fun login(email : String, password: String) = viewModelScope.launch {
-        _loginFlow.value = Resource.Loading
-        val result = repository.login(email, password)
-        _loginFlow.value = result
-
-    }
-
-    fun signUp(name: String, email : String, password: String) = viewModelScope.launch {
-        _signUpFlow.value = Resource.Loading
-        val result = repository.signup(name, email, password)
-        _signUpFlow.value = result
-
-    }
-
-    fun logout(){
-        repository.logout()
-        _loginFlow.value = null
-        _signUpFlow.value = null
-    }
-
-}

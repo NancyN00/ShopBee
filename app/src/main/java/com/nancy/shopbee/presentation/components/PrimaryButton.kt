@@ -19,24 +19,20 @@ fun PrimaryButton(
     modifier: Modifier,
     name: String,
     onClick: () -> Unit,
-    backgroundColor: Color = MaterialTheme.colorScheme.primary // Default to theme primary color
+    backgroundColor: Color = MaterialTheme.colorScheme.primary, // Default to theme primary color
 ) {
-
     Button(
         onClick = { onClick() },
         modifier = modifier.fillMaxWidth().height(45.dp),
         shape = RoundedCornerShape(10.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor)
-
+        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
     ) {
         Text(
             text = name,
             modifier = modifier,
             color = Color.White,
             fontWeight = FontWeight.Bold,
-            fontSize = 20.sp
-            )
-
+            fontSize = 20.sp,
+        )
     }
-
 }

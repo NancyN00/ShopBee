@@ -34,26 +34,25 @@ fun OnboardScreen(
     navigateToLogin: () -> Unit,
     navigateToSignUp: () -> Unit,
 ) {
-
     Column(
-        modifier = Modifier.fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
-            .background(color = Color.White)
+        modifier =
+            Modifier.fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                .background(color = Color.White),
     ) {
-
         Column(
             modifier = Modifier,
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             Image(
                 painter = painterResource(R.drawable.shopbee),
                 contentDescription = null,
-                modifier = Modifier.height(350.dp)
-                    .width(150.dp)
-                    .background(color = Color.White)
+                modifier =
+                    Modifier.height(350.dp)
+                        .width(150.dp)
+                        .background(color = Color.White),
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -61,7 +60,7 @@ fun OnboardScreen(
             Text(
                 text = "Swipe through categories, and discover the hottest items in no time",
                 textAlign = TextAlign.Center,
-                fontSize = 20.sp
+                fontSize = 20.sp,
             )
 
             Spacer(modifier = Modifier.height(50.dp))
@@ -71,7 +70,7 @@ fun OnboardScreen(
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier,
-                color = Purple40
+                color = Purple40,
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -80,7 +79,7 @@ fun OnboardScreen(
                 text = "Choose an option and get started",
                 textAlign = TextAlign.Center,
                 color = Color.DarkGray,
-                fontSize = 20.sp
+                fontSize = 20.sp,
             )
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -88,7 +87,7 @@ fun OnboardScreen(
                 modifier = Modifier,
                 name = "LOGIN",
                 onClick = navigateToLogin,
-                backgroundColor = Purple80
+                backgroundColor = Purple80,
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -97,9 +96,8 @@ fun OnboardScreen(
                 modifier = Modifier,
                 name = "SIGNUP",
                 onClick = navigateToSignUp,
-                backgroundColor = Color(0xFFCC0000)
+                backgroundColor = Color(0xFFCC0000),
             )
-
         }
     }
 }
@@ -107,12 +105,11 @@ fun OnboardScreen(
 @Preview(showBackground = true)
 @Composable
 fun OnboardScreenPreview() {
-
     ShopBeeTheme {
         /** theme wrapper **/
         OnboardScreen(
-            navigateToLogin = {  },
-            navigateToSignUp = {  }
+            navigateToLogin = { },
+            navigateToSignUp = { },
         )
     }
 }

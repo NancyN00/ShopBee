@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 fun TextInput(
     placeholder: String,
     value: String,
-    onValueChange : (String) ->Unit,
-){
+    onValueChange: (String) -> Unit,
+)  {
     val borderColor = MaterialTheme.colorScheme.onBackground.copy(.5f)
 
     OutlinedTextField(
@@ -27,16 +27,16 @@ fun TextInput(
         placeholder = {
             Text(
                 text = placeholder,
-                color = borderColor)
+                color = borderColor,
+            )
         },
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
-        colors = TextFieldDefaults.textFieldColors(
-            unfocusedIndicatorColor = borderColor,
-            containerColor = Color.Transparent
-        )
-
+        colors =
+            TextFieldDefaults.textFieldColors(
+                unfocusedIndicatorColor = borderColor,
+                containerColor = Color.Transparent,
+            ),
     )
-
 }

@@ -46,9 +46,8 @@ import com.nancy.shopbee.ui.theme.Purple80
 fun RegistrationScreen(
     navController: NavHostController,
     navigateToSignIn: () -> Unit,
-    viewModel: AuthViewModel?
+    viewModel: AuthViewModel?,
 ) {
-
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -60,11 +59,11 @@ fun RegistrationScreen(
     val signupFlow = viewModel?.signUpFlow?.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        modifier =
+            Modifier.fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
     ) {
-
         Spacer(modifier = Modifier.height(40.dp))
 
         Text(
@@ -72,7 +71,7 @@ fun RegistrationScreen(
             fontSize = 50.sp,
             color = Color.Red,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(start = 100.dp)
+            modifier = Modifier.padding(start = 100.dp),
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -80,7 +79,7 @@ fun RegistrationScreen(
         Text(
             text = "Create an account",
             fontSize = 20.sp,
-            modifier = Modifier.padding(start = 125.dp)
+            modifier = Modifier.padding(start = 125.dp),
         )
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -88,7 +87,7 @@ fun RegistrationScreen(
         TextInput(
             placeholder = "Name",
             value = name,
-            onValueChange = { name = it }
+            onValueChange = { name = it },
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -96,7 +95,7 @@ fun RegistrationScreen(
         TextInput(
             placeholder = "Email",
             value = email,
-            onValueChange = { email = it }
+            onValueChange = { email = it },
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -104,28 +103,30 @@ fun RegistrationScreen(
         PasswordInput(
             value = password,
             onValueChange = { password = it },
-            placeholder = "Password"
+            placeholder = "Password",
         )
-
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            RoundCheckBox(title = "I agree with the",
+            RoundCheckBox(
+                title = "I agree with the",
                 isChecked = isChecked,
-                onCheckChange = { isChecked = it })
+                onCheckChange = { isChecked = it },
+            )
 
             // Spacer(modifier = Modifier.weight(1f))
 
-            Text(text = "Terms and Conditions",
+            Text(
+                text = "Terms and Conditions",
                 color = Purple40,
-                modifier = Modifier.clickable {
-                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
-                }
+                modifier =
+                    Modifier.clickable {
+                        Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
+                    },
             )
-
         }
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -142,9 +143,7 @@ fun RegistrationScreen(
                     Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
                 }
             },
-            backgroundColor = Purple80
-
-
+            backgroundColor = Purple80,
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -153,42 +152,39 @@ fun RegistrationScreen(
             modifier = Modifier,
             text1 = "Already a registered user?",
             text2 = "Signin now",
-            onClickText2 = { navigateToSignIn() }
-
+            onClickText2 = { navigateToSignIn() },
         )
 
         // Registration State
-        signupFlow?.value?.let {resource ->
+        signupFlow?.value?.let { resource ->
             when (resource) {
                 is Resource.Failure -> {
                     val context = LocalContext.current
                     Toast.makeText(context, resource.exception.message, Toast.LENGTH_SHORT).show()
-
                 }
 
                 Resource.Loading -> {
                     Box(
                         modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         CircularProgressIndicator()
                     }
                 }
 
                 is Resource.Success -> {
-                    //navigate to diff screen time using flow, it might do again and again, so, use of launched effect.
+                    // navigate to diff screen time using flow, it might do again and again, so, use of launched effect.
 
                     LaunchedEffect(resource) {
                         Toast.makeText(
                             context,
                             "Account created successfully! Please log in.",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                         navigateToSignIn()
                     }
                 }
             }
-
         }
     }
 }

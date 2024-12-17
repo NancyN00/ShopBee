@@ -1,6 +1,5 @@
 package com.nancy.shopbee.presentation.profile
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,28 +8,23 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun ProfileScreen() {
-
-
     Column(
-        modifier = Modifier.fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        modifier =
+            Modifier.fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
     ) {
-
-
         Text(
             text = "Profile Screen",
             fontWeight = FontWeight.SemiBold,
-            fontSize = 25.sp
+            fontSize = 25.sp,
         )
     }
 }

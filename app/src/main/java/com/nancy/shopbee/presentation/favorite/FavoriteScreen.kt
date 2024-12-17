@@ -15,18 +15,16 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun FavoriteScreen() {
-
     Column(
-        modifier = Modifier.fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        modifier =
+            Modifier.fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
     ) {
-
-
         Text(
             text = "Favorite Screen",
             fontWeight = FontWeight.SemiBold,
-            fontSize = 25.sp
+            fontSize = 25.sp,
         )
     }
 }

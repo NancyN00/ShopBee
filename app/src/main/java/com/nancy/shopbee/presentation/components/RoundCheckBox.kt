@@ -13,24 +13,24 @@ import androidx.compose.ui.Modifier
 @Composable
 fun RoundCheckBox(
     modifier: Modifier = Modifier,
-    title : String,
+    title: String,
     isChecked: Boolean,
-    onCheckChange : (Boolean) -> Unit
-){
-    Row (
+    onCheckChange: (Boolean) -> Unit,
+)  {
+    Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ){
+        horizontalArrangement = Arrangement.Center,
+    ) {
         Checkbox(
             checked = isChecked,
             onCheckedChange = onCheckChange,
             modifier = modifier,
-            colors = CheckboxDefaults.colors(
-                checkedColor = MaterialTheme.colorScheme.onBackground,
-                checkmarkColor = MaterialTheme.colorScheme.background
-            )
+            colors =
+                CheckboxDefaults.colors(
+                    checkedColor = MaterialTheme.colorScheme.onBackground,
+                    checkmarkColor = MaterialTheme.colorScheme.background,
+                ),
         )
         Text(text = title)
-
     }
 }

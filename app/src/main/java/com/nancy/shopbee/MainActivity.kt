@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
 
         installSplashScreen()
         setContent {
-
             val navController = rememberNavController()
             ShopBeeNavControl(navController = navController)
         }
@@ -34,9 +33,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ShopBeeNavControl(navController: NavHostController) {
-
     NavHost(navController = navController, startDestination = "onboard") {
-
         composable(route = "onboard") {
             OnboardScreen(
                 navigateToLogin = {
@@ -52,12 +49,12 @@ fun ShopBeeNavControl(navController: NavHostController) {
                         launchSingleTop = true
                         restoreState = true
                     }
-                }
+                },
             )
         }
 
         composable(route = "signin") {
-            val viewModel : AuthViewModel = hiltViewModel()
+            val viewModel: AuthViewModel = hiltViewModel()
             LoginScreen(
                 navigateToHome = {
                     navController.navigate("home") {
@@ -68,18 +65,17 @@ fun ShopBeeNavControl(navController: NavHostController) {
                     }
                 },
                 navigateToSignUp = {
-
                     navController.navigate("home") {
                         launchSingleTop = true
                         restoreState = true
                     }
                 },
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
 
         composable(route = "signup") {
-            val viewModel : AuthViewModel = hiltViewModel()
+            val viewModel: AuthViewModel = hiltViewModel()
 
             RegistrationScreen(
                 navController = navController,
@@ -90,7 +86,7 @@ fun ShopBeeNavControl(navController: NavHostController) {
                         launchSingleTop = true
                     }
                 },
-                viewModel = viewModel
+                viewModel = viewModel,
             )
 
 //            RegistrationScreen(
@@ -107,5 +103,4 @@ fun ShopBeeNavControl(navController: NavHostController) {
             ShopBeeBottomNavigation()
         }
     }
-
 }

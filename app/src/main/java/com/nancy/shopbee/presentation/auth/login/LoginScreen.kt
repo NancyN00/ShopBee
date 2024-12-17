@@ -43,7 +43,7 @@ import com.nancy.shopbee.ui.theme.Purple80
 fun LoginScreen(
     navigateToHome: () -> Unit,
     navigateToSignUp: () -> Unit,
-    viewModel: AuthViewModel?
+    viewModel: AuthViewModel?,
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -55,11 +55,11 @@ fun LoginScreen(
     val loginFlow = viewModel?.loginFlow?.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        modifier =
+            Modifier.fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
     ) {
-
         Spacer(modifier = Modifier.height(40.dp))
 
         Text(
@@ -67,7 +67,7 @@ fun LoginScreen(
             fontSize = 50.sp,
             color = Color.Red,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(start = 100.dp)
+            modifier = Modifier.padding(start = 100.dp),
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -75,7 +75,7 @@ fun LoginScreen(
         Text(
             text = "Login to continue",
             fontSize = 20.sp,
-            modifier = Modifier.padding(start = 125.dp)
+            modifier = Modifier.padding(start = 125.dp),
         )
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -83,7 +83,7 @@ fun LoginScreen(
         TextInput(
             placeholder = "Email",
             value = email,
-            onValueChange = { email = it }
+            onValueChange = { email = it },
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -91,28 +91,30 @@ fun LoginScreen(
         PasswordInput(
             value = password,
             onValueChange = { password = it },
-            placeholder = "Password"
+            placeholder = "Password",
         )
-
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            RoundCheckBox(title = "Remember me",
+            RoundCheckBox(
+                title = "Remember me",
                 isChecked = isChecked,
-                onCheckChange = { isChecked = it })
+                onCheckChange = { isChecked = it },
+            )
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Text(text = "Forgot password?",
+            Text(
+                text = "Forgot password?",
                 color = Purple40,
-                modifier = Modifier.clickable {
-                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
-                }
+                modifier =
+                    Modifier.clickable {
+                        Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show()
+                    },
             )
-
         }
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -123,7 +125,7 @@ fun LoginScreen(
             onClick = {
                 viewModel?.login(email, password)
             },
-            backgroundColor = Purple80
+            backgroundColor = Purple80,
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -132,8 +134,7 @@ fun LoginScreen(
             modifier = Modifier,
             text1 = "Not a registered user?",
             text2 = "Signup now",
-            onClickText2 = { navigateToSignUp() }
-
+            onClickText2 = { navigateToSignUp() },
         )
 
         loginFlow?.value?.let {
@@ -141,7 +142,6 @@ fun LoginScreen(
                 is Resource.Failure -> {
                     val context = LocalContext.current
                     Toast.makeText(context, it.exception.message, Toast.LENGTH_SHORT).show()
-
                 }
 
                 Resource.Loading -> {
@@ -149,14 +149,13 @@ fun LoginScreen(
                 }
 
                 is Resource.Success -> {
-                    //navigate to diff screen time using flow, it might do again and again, so, use of launched effect.
+                    // navigate to diff screen time using flow, it might do again and again, so, use of launched effect.
 
                     LaunchedEffect(Unit) {
                         navigateToHome()
                     }
                 }
             }
-
         }
     }
 }
