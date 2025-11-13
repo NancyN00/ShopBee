@@ -21,7 +21,7 @@ The app uses these technologies;
 
 * Illustrations and graphics in this app are provided by Storyset
        
-  ## Screenshots
+## Screenshots
  <p align="center">
 <img width="272" height="538" alt="shopbee" src="https://github.com/user-attachments/assets/04c23bde-07bf-4e42-a2fa-7635e46c3329" />
 </p>
