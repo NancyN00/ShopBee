@@ -15,22 +15,20 @@ import androidx.compose.ui.unit.dp
 fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
-
+    modifier: Modifier = Modifier,
 ) {
-
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        ),
-        modifier = modifier.fillMaxWidth()
-            .padding(start = 15.dp, end = 15.dp),
-        shape = RoundedCornerShape(10.dp)
+        colors =
+            ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+            ),
+        modifier =
+            modifier.fillMaxWidth()
+                .padding(start = 15.dp, end = 15.dp),
+        shape = RoundedCornerShape(10.dp),
     ) {
-
         Text(text)
     }
-
 }

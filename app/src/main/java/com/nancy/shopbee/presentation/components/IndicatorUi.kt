@@ -17,31 +17,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun IndicatorUi (
+fun IndicatorUi(
     pageSize: Int,
     currentPage: Int,
     selectedColor: Color = MaterialTheme.colorScheme.secondary,
     unselectedColor: Color = MaterialTheme.colorScheme.secondaryContainer,
-){
-
+) {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween
-    ){
-
-    repeat(pageSize){
-        Spacer(modifier = Modifier.height(2.5.dp))
-        Box(
-            modifier = Modifier.run {
-                height(14.dp)
-                    .width( width = if (it == currentPage) 32.dp else 16.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(color = if(it == currentPage) selectedColor else unselectedColor)
-
-            }
-        )
-        Spacer(modifier = Modifier.size(2.5.dp))
-
-    }
-
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        repeat(pageSize) {
+            Spacer(modifier = Modifier.height(2.5.dp))
+            Box(
+                modifier =
+                    Modifier.run {
+                        height(14.dp)
+                            .width(width = if (it == currentPage) 32.dp else 16.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(color = if (it == currentPage) selectedColor else unselectedColor)
+                    },
+            )
+            Spacer(modifier = Modifier.size(2.5.dp))
+        }
     }
 }

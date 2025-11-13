@@ -5,6 +5,8 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.google.dagger.hilt)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -26,7 +28,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -70,14 +72,11 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.coil.compose)
-    implementation(libs.core.splashscreen)  //Dagger - Hilt
+    implementation(libs.core.splashscreen) // Dagger - Hilt
     implementation(libs.google.dagger.hilt)
     kapt(libs.google.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
-    //serialization
+    // serialization
     implementation(libs.kotlinx.serialization.json)
-
-
-
 }

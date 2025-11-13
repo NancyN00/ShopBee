@@ -11,24 +11,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = "This is Home Screen",
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview(){
+fun HomeScreenPreview() {
     ShopBeeTheme {
         HomeScreen()
     }
-
-
 }

@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -19,13 +19,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun OnboardingItemUi(onboardingModel: OnboardingModel){
-
+fun OnboardingItemUi(onboardingModel: OnboardingModel) {
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.primary)
                 .padding(all = 16.dp),
     ) {
         Image(
@@ -36,13 +35,12 @@ fun OnboardingItemUi(onboardingModel: OnboardingModel){
                 Modifier
                     .fillMaxWidth(fraction = 0.8f)
                     .aspectRatio(ratio = 1f),
-
         )
 
         Text(
             text = onboardingModel.title,
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
         )
@@ -54,9 +52,7 @@ fun OnboardingItemUi(onboardingModel: OnboardingModel){
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
-
     }
-
 }
