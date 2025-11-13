@@ -10,12 +10,11 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,21 +24,20 @@ import com.nancy.shopbee.presentation.components.OnboardingButtonUi
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen(onFinished: () -> Unit){
-      val pages =
+fun OnboardingScreen(onFinished: () -> Unit) {
+    val pages =
         listOf(
             OnboardingModel.FirstOnboardingPage,
             OnboardingModel.SecondOnboardingPage,
-            OnboardingModel.ThirdOnboardingPage
+            OnboardingModel.ThirdOnboardingPage,
         )
 
-          val pagerState = rememberPagerState(initialPage = 0) { pages.size }
-          val scope = rememberCoroutineScope()
+    val pagerState = rememberPagerState(initialPage = 0) { pages.size }
+    val scope = rememberCoroutineScope()
 
     val buttonState =
         remember {
             derivedStateOf {
-
                 when (pagerState.currentPage) {
                     0 -> listOf("", "Next")
                     1 -> listOf("Back", "Next")
@@ -59,13 +57,10 @@ fun OnboardingScreen(onFinished: () -> Unit){
                 scope = scope,
             )
         },
-
     ) {
         OnboardingPager(pages = pages, pagerState = pagerState, modifier = Modifier.padding(it))
     }
-
 }
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -104,8 +99,6 @@ private fun OnboardingBottomBar(
             if (buttonState[0].isNotEmpty()) {
                 OnboardingButtonUi(
                     text = buttonState[0],
-                    ///  backgroundColor = Color.Transparent,
-                    // textColor = Color.Gray,
                 ) {
                     scope.launch {
                         if (pagerState.currentPage > 0) {
@@ -125,8 +118,6 @@ private fun OnboardingBottomBar(
         Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterEnd) {
             OnboardingButtonUi(
                 text = buttonState[1],
-                //   backgroundColor = MaterialTheme.colorScheme.primary,
-                // textColor = MaterialTheme.colorScheme.onPrimary,
             ) {
                 scope.launch {
                     if (pagerState.currentPage < pageCount - 1) {
@@ -143,5 +134,5 @@ private fun OnboardingBottomBar(
 @Preview(showBackground = true)
 @Composable
 fun OnboardingScreenPreview() {
-   // OnboardingScreen {}
+    // OnboardingScreen {}
 }
