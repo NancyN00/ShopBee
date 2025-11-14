@@ -29,6 +29,9 @@ fun ShopBeeNavigation() {
     Scaffold(
         bottomBar = {
             NavigationBar(
+                /*
+                change colors later
+                 */
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary,
             ) {
