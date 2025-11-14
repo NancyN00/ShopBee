@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -20,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.nancy.shopbee.presentation.screens.account.AccountScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.screens.home.HomeScreen
+import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -85,5 +87,13 @@ fun ShopBeeNavigation() {
                 AccountScreen()
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShopBeeNavPreview() {
+    ShopBeeTheme {
+        ShopBeeNavigation()
     }
 }
