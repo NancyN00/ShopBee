@@ -1,5 +1,6 @@
 root = true
 
 [*]
-ktlint_standard_final-newline = disabled
+ktlint_standard_final-newline = enabled
 ktlint_function_naming_ignore_when_annotated_with = Composable
+insert_final_newline = true

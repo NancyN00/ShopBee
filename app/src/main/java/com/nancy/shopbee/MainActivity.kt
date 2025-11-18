@@ -15,7 +15,6 @@ import com.nancy.shopbee.ui.theme.ShopBeeTheme
 import com.nancy.shopbee.utils.OnboardingUtils
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val onboardingUtils by lazy { OnboardingUtils(this) }

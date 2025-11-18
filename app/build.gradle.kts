@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("kapt")
-    alias(libs.plugins.google.dagger.hilt)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
@@ -42,6 +42,10 @@ android {
     buildFeatures {
         compose = true
     }
+
+    detekt {
+        autoCorrect = true
+    }
 }
 
 dependencies {
@@ -73,8 +77,8 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.coil.compose)
     implementation(libs.core.splashscreen) // Dagger - Hilt
-    implementation(libs.google.dagger.hilt)
-    kapt(libs.google.dagger.hilt.compiler)
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
     // serialization
