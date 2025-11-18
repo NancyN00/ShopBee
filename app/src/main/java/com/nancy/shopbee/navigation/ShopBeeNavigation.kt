@@ -1,6 +1,7 @@
 package com.nancy.shopbee.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -10,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -21,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.nancy.shopbee.presentation.screens.account.AccountScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.screens.home.HomeScreen
+import com.nancy.shopbee.presentation.screens.home.details.ProductDetailsScreen
 import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -70,13 +73,24 @@ fun ShopBeeNavigation() {
                 }
             }
         },
-    ) {
+    ) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = Screens.HomeScreen.name,
+            modifier = Modifier.padding(paddingValues),
         ) {
             composable(route = Screens.HomeScreen.name) {
-                HomeScreen()
+                HomeScreen(navController)
+            }
+
+            // Product Details
+            composable(route = Screens.ProductDetailsScreen.name) {
+                val productId =
+                    navController.previousBackStackEntry
+                        ?.savedStateHandle
+                        ?.get<Int>("productId") ?: 0
+
+                ProductDetailsScreen(productId = productId, navController = navController)
             }
 
             composable(route = Screens.FavoriteScreen.name) {

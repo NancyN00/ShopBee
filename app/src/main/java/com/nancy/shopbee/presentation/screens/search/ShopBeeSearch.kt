@@ -12,7 +12,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,47 +27,50 @@ import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @Composable
 fun ShopBeeSearch(
-    modifier: Modifier,
-    onSearchClick : () -> Unit = {}
-){
-     var searchText  by remember { mutableStateOf( "") }
+    //  modifier: Modifier,
+    onSearchClick: () -> Unit = {},
+) {
+    var searchText by remember { mutableStateOf("") }
 
     TextField(
         value = searchText,
-        onValueChange = {searchText = it},
+        onValueChange = { searchText = it },
         placeholder = { Text("What are you looking for?", fontSize = 14.sp) },
         singleLine = true,
-        modifier = Modifier.fillMaxWidth()
-            .height(50.dp)
-            .background(color = MaterialTheme.colorScheme.primary),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(color = MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(12.dp),
-
         trailingIcon = {
             IconButton(onClick = onSearchClick) {
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "Search",
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = MaterialTheme.colorScheme.onPrimary,
                 )
             }
         },
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent,
-            cursorColor = MaterialTheme.colorScheme.primary,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        )
+        colors =
+            TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                cursorColor = MaterialTheme.colorScheme.primary,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+            ),
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ShopBeeSearchPreview(){
+fun ShopBeeSearchPreview() {
     ShopBeeTheme {
         ShopBeeSearch(
-            modifier = Modifier
-                .padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier =
+                Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
         )
     }
 }
