@@ -94,7 +94,7 @@ fun ShopBeeNavigation() {
             }
 
             composable(route = Screens.FavoriteScreen.name) {
-                FavoriteScreen()
+                FavoriteScreen(navController = navController)
             }
 
             composable(route = Screens.AccountScreen.name) {

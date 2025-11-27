@@ -27,7 +27,7 @@ import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @Composable
 fun ShopBeeSearch(
-    //  modifier: Modifier,
+    modifier: Modifier,
     onSearchClick: () -> Unit = {},
 ) {
     var searchText by remember { mutableStateOf("") }

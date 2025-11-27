@@ -1,4 +1,4 @@
-package com.nancy.shopbee.domain
+package com.nancy.shopbee.domain.repository
 
 import com.nancy.shopbee.domain.models.Product
 
