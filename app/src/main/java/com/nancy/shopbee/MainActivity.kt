@@ -19,6 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val onboardingUtils by lazy { OnboardingUtils(this) }
 
+    //remember to implement preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
