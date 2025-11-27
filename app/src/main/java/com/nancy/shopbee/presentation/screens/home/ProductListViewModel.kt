@@ -3,7 +3,7 @@ package com.nancy.shopbee.presentation.screens.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nancy.shopbee.domain.ShopBeeRepository
+import com.nancy.shopbee.domain.repository.ShopBeeRepository
 import com.nancy.shopbee.domain.models.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

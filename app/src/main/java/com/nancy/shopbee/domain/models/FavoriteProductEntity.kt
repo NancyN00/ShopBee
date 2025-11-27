@@ -1,18 +1,16 @@
 package com.nancy.shopbee.domain.models
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Product(
-    val id: Int,
+@Entity(tableName = "favorite_products")
+data class FavoriteProductEntity(
+    @PrimaryKey val id: Int,
     val title: String,
     val price: Double,
     val description: String,
     val category: String,
     val image: String,
-    val rating: Rating,
-)
-
-data class Rating(
     val rate: Double,
-    val count: Int,
+    val count: Int
 )

@@ -81,6 +81,10 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
     // serialization
     implementation(libs.kotlinx.serialization.json)
 }

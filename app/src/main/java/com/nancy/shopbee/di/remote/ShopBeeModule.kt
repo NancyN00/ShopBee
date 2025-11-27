@@ -2,7 +2,7 @@ package com.nancy.shopbee.di.remote
 
 import com.nancy.shopbee.data.remote.ShopBeeApiService
 import com.nancy.shopbee.data.repository.ShopBeeRepositoryImpl
-import com.nancy.shopbee.domain.ShopBeeRepository
+import com.nancy.shopbee.domain.repository.ShopBeeRepository
 import com.nancy.shopbee.utils.Constant.BASE_URL
 import dagger.Module
 import dagger.Provides

@@ -1,7 +1,7 @@
 package com.nancy.shopbee.data.repository
 
 import com.nancy.shopbee.data.remote.ShopBeeApiService
-import com.nancy.shopbee.domain.ShopBeeRepository
+import com.nancy.shopbee.domain.repository.ShopBeeRepository
 import com.nancy.shopbee.domain.models.Product
 import javax.inject.Inject
 
