@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nancy.shopbee.presentation.screens.account.AccountScreen
+import com.nancy.shopbee.presentation.screens.account.SettingsScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.screens.home.HomeScreen
 import com.nancy.shopbee.presentation.screens.home.details.ProductDetailsScreen
@@ -98,11 +99,16 @@ fun ShopBeeNavigation() {
             }
 
             composable(route = Screens.AccountScreen.name) {
-                AccountScreen()
+                AccountScreen(navController = navController)
+            }
+
+            composable(route = Screens.SettingScreen.name) {
+                SettingsScreen(navController)
             }
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

@@ -15,7 +15,7 @@ import com.nancy.shopbee.domain.models.Product
 fun ProductList(
     products: List<Product>,
     onCardClick: (Product) -> Unit = {},
-  //  modifier: Modifier = Modifier,
+  modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp),
