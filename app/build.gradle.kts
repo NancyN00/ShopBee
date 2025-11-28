@@ -82,9 +82,11 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
 
-    //datastore
-    implementation (libs.androidx.datastore.preferences)
+    // datastore
+    implementation(libs.androidx.datastore.preferences)
 
     // serialization
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.accompanist.swiperefresh)
 }

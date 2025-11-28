@@ -5,5 +5,5 @@ enum class Screens(val route: String) {
     FavoriteScreen("favorites"),
     AccountScreen("account"),
     ProductDetailsScreen("productDetails"),
-    SettingScreen("settings")
+    SettingScreen("settings"),
 }

@@ -10,18 +10,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(
-    private val settingsDataStore: SettingsDataStore
-) : ViewModel() {
+class SettingsViewModel
+    @Inject
+    constructor(
+        private val settingsDataStore: SettingsDataStore,
+    ) : ViewModel() {
+        // Converts flow to stateflow for compose (updates ui)
+        val isDarkTheme =
+            settingsDataStore.isDarkThemeFlow
+                .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-    // Converts Flow to StateFlow for Compose (updates UI)
-    val isDarkTheme = settingsDataStore.isDarkThemeFlow
-        .stateIn(viewModelScope, SharingStarted.Lazily, false)
+        val fontSize =
+            settingsDataStore.fontSizeFlow
+                .stateIn(viewModelScope, SharingStarted.Lazily, 16)
 
-    fun setDarkTheme(enabled: Boolean) {
-        viewModelScope.launch {
-            settingsDataStore.setDarkTheme(enabled)
+        fun setDarkTheme(enabled: Boolean) {
+            viewModelScope.launch {
+                settingsDataStore.setDarkTheme(enabled)
+            }
+        }
+
+        fun setFontSize(size: Int) {
+            viewModelScope.launch { settingsDataStore.setFontSize(size) }
         }
     }
-}
-

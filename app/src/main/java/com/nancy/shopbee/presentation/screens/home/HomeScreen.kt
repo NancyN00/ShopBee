@@ -60,16 +60,15 @@ fun HomeScreen(
                     },
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(2.dp))
 
-                // product Grid
                 val products by viewModel.products.collectAsState()
 
                 ProductList(
                     modifier = Modifier.weight(1f),
                     products = products,
                     onCardClick = { product ->
-                        // Save the productId before navigating
+                        // save the productId before navigating
                         navController.currentBackStackEntry
                             ?.savedStateHandle
                             ?.set("productId", product.id)
