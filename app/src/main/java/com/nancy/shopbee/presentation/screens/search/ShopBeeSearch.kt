@@ -27,7 +27,7 @@ import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @Composable
 fun ShopBeeSearch(
-     modifier: Modifier,
+    modifier: Modifier,
     onSearchClick: () -> Unit = {},
 ) {
     var searchText by remember { mutableStateOf("") }
@@ -38,7 +38,7 @@ fun ShopBeeSearch(
         placeholder = { Text("What are you looking for?", fontSize = 14.sp) },
         singleLine = true,
         modifier =
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .height(50.dp)
                 .background(color = MaterialTheme.colorScheme.primary),
