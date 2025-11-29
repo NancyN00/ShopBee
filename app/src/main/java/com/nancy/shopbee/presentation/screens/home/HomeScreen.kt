@@ -70,10 +70,7 @@ fun HomeScreen(
                     products = products,
                     onCardClick = { product ->
                         // Save the productId before navigating
-                        navController.currentBackStackEntry
-                            ?.savedStateHandle
-                            ?.set("productId", product.id)
-                        navController.navigate(Screens.ProductDetailsScreen.name)
+                        navController.navigate("${Screens.ProductDetailsScreen.name}/${product.id}")
                     },
                 )
 

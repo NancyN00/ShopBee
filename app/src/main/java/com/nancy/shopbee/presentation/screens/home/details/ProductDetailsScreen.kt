@@ -13,10 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.nancy.shopbee.domain.models.ProductDetailsItem
-import com.nancy.shopbee.presentation.screens.favorite.FavoriteProductsViewModel
+import com.nancy.shopbee.domain.models.ProductDetailsEntity
+import com.nancy.shopbee.presentation.screens.favorite.FavProdViewModel
 import com.nancy.shopbee.presentation.screens.home.ProductListViewModel
 
 @Composable
@@ -24,7 +23,7 @@ fun ProductDetailsScreen(
     productId: Int,
     navController: NavHostController,
     viewModel: ProductListViewModel = hiltViewModel(),
-    favoriteProdViewModel: FavoriteProductsViewModel = hiltViewModel()
+    favoriteProdViewModel: FavProdViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
 
@@ -44,16 +43,17 @@ fun ProductDetailsScreen(
     val isFavorite by favoriteProdViewModel.isFavorite.collectAsState()
 
     product?.let { p ->
-        val productDetails = ProductDetailsItem(
-            id = p.id,
-            title = p.title,
-            price = p.price,
-            description = p.description,
-            category = p.category,
-            image = p.image,
-            rate = p.rating.rate,
-            count = p.rating.count
-        )
+        val productDetails =
+            ProductDetailsEntity(
+                id = p.id,
+                title = p.title,
+                price = p.price,
+                description = p.description,
+                category = p.category,
+                image = p.image,
+                rate = p.rating.rate,
+                count = p.rating.count,
+            )
 
         ProductDetailsItemLayout(
             product = productDetails,
@@ -62,7 +62,7 @@ fun ProductDetailsScreen(
                 favoriteProdViewModel.toggleFavorite(productDetails.toProductEntity())
             },
             onBuyClick = { /* Trigger MPESA/payment */ },
-            isFavorite = isFavorite
+            isFavorite = isFavorite,
         )
     } ?: run {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

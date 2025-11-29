@@ -26,38 +26,38 @@ import com.nancy.shopbee.domain.models.FavoriteProductEntity
 @Composable
 fun FavItemLayout(
     product: FavoriteProductEntity,
-   onClick: (FavoriteProductEntity) -> Unit,
+    onClick: (FavoriteProductEntity) -> Unit,
 ) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-          .clickable { onClick(product) },
-        elevation = CardDefaults.cardElevation(4.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .clickable { onClick(product) },
+        elevation = CardDefaults.cardElevation(4.dp),
     ) {
         Row(
             modifier = Modifier.padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-
             Image(
                 painter = rememberImagePainter(product.image),
                 contentDescription = product.title,
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                modifier =
+                    Modifier
+                        .size(80.dp)
+                        .clip(RoundedCornerShape(8.dp)),
             )
 
             Spacer(modifier = Modifier.width(16.dp))
 
             Column(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             ) {
                 Text(text = product.title, fontWeight = FontWeight.Bold)
                 Text(text = "$${product.price}")
                 Text(text = product.category, style = MaterialTheme.typography.titleMedium)
             }
-
         }
     }
 }

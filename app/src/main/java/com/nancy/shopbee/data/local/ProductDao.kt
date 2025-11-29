@@ -19,7 +19,7 @@ interface ProductDao {
     suspend fun removeFromFavorite(product: FavoriteProductEntity)
 
     @Query("SELECT * FROM favorite_products")
-    fun getFavoritesProducts(): Flow<List<FavoriteProductEntity>>  // <-- Flow instead of List
+    fun getFavoritesProducts(): Flow<List<FavoriteProductEntity>> // <-- Flow instead of List
 
     @Query("SELECT EXISTS (SELECT 1 FROM favorite_products WHERE id = :productId)")
     suspend fun isProductInFavorites(productId: Int): Boolean

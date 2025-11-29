@@ -1,6 +1,6 @@
 package com.nancy.shopbee.domain.models
 
-data class ProductDetailsItem(
+data class ProductDetailsEntity(
     val id: Int,
     val title: String,
     val price: Double,
@@ -9,7 +9,7 @@ data class ProductDetailsItem(
     val image: String,
     val rate: Double,
     val count: Int,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
 ) {
     fun toProductEntity(): FavoriteProductEntity {
         return FavoriteProductEntity(
@@ -24,4 +24,3 @@ data class ProductDetailsItem(
         )
     }
 }
-
