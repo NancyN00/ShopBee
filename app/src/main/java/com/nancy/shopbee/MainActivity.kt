@@ -21,6 +21,8 @@ import com.nancy.shopbee.utils.OnboardingUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+// add work manager for caching with room
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val onboardingUtils by lazy { OnboardingUtils(this) }
