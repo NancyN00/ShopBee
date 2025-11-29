@@ -38,7 +38,7 @@ fun ShopBeeSearch(
         placeholder = { Text("What are you looking for?", fontSize = 14.sp) },
         singleLine = true,
         modifier =
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .height(50.dp)
                 .background(color = MaterialTheme.colorScheme.primary),
