@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var settingsDataStore: SettingsDataStore
 
-    //remember to implement preferences
+    // remember to implement preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

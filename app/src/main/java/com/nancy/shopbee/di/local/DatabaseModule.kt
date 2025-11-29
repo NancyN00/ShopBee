@@ -14,16 +14,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
     @Provides
     @Singleton
     fun provideDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): ProductFavDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
             ProductFavDatabase::class.java,
-            "favorite_books_db"
+            "favorite_books_db",
         ).build()
     }
 
@@ -32,5 +31,3 @@ object DatabaseModule {
         return database.productDao()
     }
 }
-
-

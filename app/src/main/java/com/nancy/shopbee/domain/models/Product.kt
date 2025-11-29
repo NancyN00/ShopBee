@@ -1,7 +1,5 @@
 package com.nancy.shopbee.domain.models
 
-import androidx.room.Entity
-
 data class Product(
     val id: Int,
     val title: String,

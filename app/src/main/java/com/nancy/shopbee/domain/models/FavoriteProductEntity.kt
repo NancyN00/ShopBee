@@ -12,5 +12,5 @@ data class FavoriteProductEntity(
     val category: String,
     val image: String,
     val rate: Double,
-    val count: Int
+    val count: Int,
 )

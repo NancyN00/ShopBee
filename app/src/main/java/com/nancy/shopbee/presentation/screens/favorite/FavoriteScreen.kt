@@ -28,13 +28,13 @@ import com.nancy.shopbee.navigation.Screens
 
 @Composable
 fun FavoriteScreen(
-    favoriteProdViewModel: FavoriteProductsViewModel = hiltViewModel(),
-    navController: NavHostController
+    favoriteProdViewModel: FavProdViewModel = hiltViewModel(),
+    navController: NavHostController,
 ) {
     val context = LocalContext.current
     val favoriteProducts by favoriteProdViewModel.favoriteProducts.collectAsStateWithLifecycle()
 
-    // ✅ Add Toast collection for FavoriteScreen too
+    // Add Toast collection for FavoriteScreen too
     LaunchedEffect(Unit) {
         favoriteProdViewModel.toastMessage.collect { message ->
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -42,21 +42,22 @@ fun FavoriteScreen(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
     ) {
         Text(
             text = "Favorite Products",
             fontWeight = FontWeight.SemiBold,
-            fontSize = 25.sp
+            fontSize = 25.sp,
         )
 
         if (favoriteProducts.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Text("No favorite product found", style = MaterialTheme.typography.bodyLarge)
             }
@@ -67,11 +68,10 @@ fun FavoriteScreen(
                         product = prod,
                         onClick = {
                             navController.navigate("${Screens.ProductDetailsScreen.name}/${prod.id}")
-                        }
+                        },
                     )
                 }
             }
         }
     }
 }
-

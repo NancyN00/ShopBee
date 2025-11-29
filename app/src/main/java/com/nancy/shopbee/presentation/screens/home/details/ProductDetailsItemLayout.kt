@@ -32,23 +32,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.nancy.shopbee.domain.models.ProductDetailsItem
+import com.nancy.shopbee.domain.models.ProductDetailsEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailsItemLayout(
-    product: ProductDetailsItem, // Use your ProductDetailsItem with isFavorite
+    product: ProductDetailsEntity,
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
     onBuyClick: () -> Unit,
-    isFavorite: Boolean
+    isFavorite: Boolean,
 ) {
     Scaffold(
         topBar = {
             ProductDetailsTopBar(
                 onBackClick = onBackClick,
                 onFavoriteClick = onFavoriteClick,
-                isFavorite = isFavorite
+                isFavorite = isFavorite,
             )
         },
     ) { paddingValues ->
@@ -65,7 +65,7 @@ fun ProductDetailsItemLayout(
 fun ProductDetailsTopBar(
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
-    isFavorite: Boolean
+    isFavorite: Boolean,
 ) {
     TopAppBar(
         title = {},
@@ -77,48 +77,53 @@ fun ProductDetailsTopBar(
         actions = {
             IconButton(
                 onClick = onFavoriteClick,
-                modifier = Modifier
-                    .size(48.dp)  // Material 3 touch target size
+                modifier =
+                    Modifier
+                        .size(48.dp),
             ) {
                 Icon(
-                    imageVector = if (isFavorite) {
-                        Icons.Default.Favorite
-                    } else {
-                        Icons.Default.FavoriteBorder
-                    },
-                    contentDescription = if (isFavorite) {
-                        "Remove from favorites"
-                    } else {
-                        "Add to favorites"
-                    },
-                    tint = if (isFavorite) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        MaterialTheme.colorScheme.onSurfaceVariant
-                    },
-                    modifier = Modifier.size(24.dp)
+                    imageVector =
+                        if (isFavorite) {
+                            Icons.Default.Favorite
+                        } else {
+                            Icons.Default.FavoriteBorder
+                        },
+                    contentDescription =
+                        if (isFavorite) {
+                            "Remove from favorites"
+                        } else {
+                            "Add to favorites"
+                        },
+                    tint =
+                        if (isFavorite) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                    modifier = Modifier.size(24.dp),
                 )
             }
-
         },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
-        ),
+        colors =
+            TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+            ),
     )
 }
 
 @Composable
 fun ProductDetailsContent(
-    product: ProductDetailsItem,
+    product: ProductDetailsEntity,
     paddingValues: PaddingValues,
     onBuyClick: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(paddingValues)
-            .padding(horizontal = 16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp),
     ) {
         ProductImage(product)
         ProductInfo(product)
@@ -127,14 +132,15 @@ fun ProductDetailsContent(
 }
 
 @Composable
-fun ProductImage(product: ProductDetailsItem) {
+fun ProductImage(product: ProductDetailsEntity) {
     AsyncImage(
         model = product.image,
         contentDescription = product.title,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(250.dp)
-            .clip(RoundedCornerShape(8.dp)),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(250.dp)
+                .clip(RoundedCornerShape(8.dp)),
         contentScale = ContentScale.Crop,
     )
 
@@ -142,7 +148,7 @@ fun ProductImage(product: ProductDetailsItem) {
 }
 
 @Composable
-fun ProductInfo(product: ProductDetailsItem) {
+fun ProductInfo(product: ProductDetailsEntity) {
     Text(
         text = product.title,
         style = MaterialTheme.typography.titleMedium,

@@ -16,10 +16,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.nancy.shopbee.presentation.screens.account.AccountScreen
 import com.nancy.shopbee.presentation.screens.account.SettingsScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
@@ -84,14 +86,20 @@ fun ShopBeeNavigation() {
                 HomeScreen(navController)
             }
 
-            // Product Details
-            composable(route = Screens.ProductDetailsScreen.name) {
-                val productId =
-                    navController.previousBackStackEntry
-                        ?.savedStateHandle
-                        ?.get<Int>("productId") ?: 0
-
-                ProductDetailsScreen(productId = productId, navController = navController)
+            composable(
+                route = "${Screens.ProductDetailsScreen.name}/{productId}",
+                arguments =
+                    listOf(
+                        navArgument("productId") {
+                            type = NavType.IntType
+                        },
+                    ),
+            ) { backStackEntry ->
+                val productId = backStackEntry.arguments?.getInt("productId") ?: 0
+                ProductDetailsScreen(
+                    productId = productId,
+                    navController = navController,
+                )
             }
 
             composable(route = Screens.FavoriteScreen.name) {
