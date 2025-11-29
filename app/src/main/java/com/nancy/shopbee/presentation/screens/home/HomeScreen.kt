@@ -69,7 +69,6 @@ fun HomeScreen(
                     modifier = Modifier.weight(1f),
                     products = products,
                     onCardClick = { product ->
-                        // Save the productId before navigating
                         navController.navigate("${Screens.ProductDetailsScreen.name}/${product.id}")
                     },
                 )
