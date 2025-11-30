@@ -1,6 +1,5 @@
 package com.nancy.shopbee.presentation.screens.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,42 +35,47 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = { Text("ShopBee") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.background,
+                    ),
             )
         },
-        content = { paddingValues ->
-            Column(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-            ) {
-                ShopBeeSearch(Modifier)
+    ) { paddingValues ->
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+        ) {
+            ShopBeeSearch(
+                Modifier,
+                viewModel = viewModel,
+            )
 
-                Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-                // category chips
-                ProductCategoriesSection(
-                    viewModel = viewModel,
-                    onCategorySelected = { selectedCategory ->
-                        viewModel.fetchProductsByCategory(selectedCategory)
+            ProductCategoriesSection(
+                viewModel = viewModel,
+                onCategorySelected = { selectedCategory ->
+                    viewModel.fetchProductsByCategory(selectedCategory)
+                },
+            )
 
-                        Log.d("HomeScreen", "Selected category: $selectedCategory")
-                    },
-                )
+            Spacer(modifier = Modifier.height(8.dp))
 
-                Spacer(modifier = Modifier.height(8.dp))
+            val filtered by viewModel.filteredProducts.collectAsState()
 
-                // product Grid
-                val products by viewModel.products.collectAsState()
-
-                ProductList(
-                    modifier = Modifier.weight(1f),
-                    products = products,
-                    onCardClick = { product ->
-                        navController.navigate("${Screens.ProductDetailsScreen.name}/${product.id}")
-                    },
-                )
+            ProductList(
+                modifier = Modifier.weight(1f),
+                products = filtered,
+                onCardClick = { product ->
+                    navController.navigate("${Screens.ProductDetailsScreen.name}/${product.id}")
+                },
+            )
+        }
+    }
+}
 
 //             before api:   val sampleCategories = listOf("Electronics", "Books", "Clothing", "Toys", "Groceries")
 //
@@ -83,9 +87,9 @@ fun HomeScreen(
 //                    }
 //                )
 
-                //   Spacer(modifier = Modifier.height(8.dp))
+//   Spacer(modifier = Modifier.height(8.dp))
 
-                // before api implementation
+// before api implementation
 //                val sampleProducts = listOf(
 //                    ProductItemDto(1, "Smartphone", "$299", R.drawable.ic_menu_camera),
 //                    ProductItemDto(2, "Laptop", "$799", R.drawable.ic_menu_gallery),
@@ -95,10 +99,6 @@ fun HomeScreen(
 //                ProductList(products = sampleProducts) { product ->
 //                    // handle buy click for preview
 //                }
-            }
-        },
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
