@@ -1,21 +1,26 @@
 # ShopBee
-ShopBee is an Android shopping app built with Kotlin and Jetpack Compose. Users can browse items, save favorites, and make payments via M-Pesa.
+
+ShopBee is an Android e-commerce app featuring products from the Fake Store API, M-Pesa payments, Firebase authentication (Google, Email, Facebook), and local storage with Datastore & Room.
 
 ## Features
-  * Splash & Onboarding screens
-  * Authentication (Email/Google Sign-In)
-  * Account settings stored with DataStore
-  * Favorites saved using Room Database
+- Splash & Onboarding screens
+- Authentication (Email/Google/Facebook Sign-In)
+- Account settings (e.g., font size, theme) stored using DataStore
+- Favorites saved using Room Database
+- Real-time product search with instant filtering
+- Products update when network reconnects (refresh or retry)
+- Payments via M-Pesa (in progress)
 
 ## Technologies
-The app uses these technologies;
+The app uses these technologies:
+- **Language:** Kotlin
+- **UI:** Jetpack Compose, Coil (image loading)
+- **Dependency Injection:** Hilt
+- **Data Storage:** DataStore, Room Database
+- **Networking:** Retrofit (for fetching shop items)
+- **Authentication:** Firebase Auth
+- **Payments:** M-Pesa API
 
-  * Language: Kotlin
-  * UI: Jetpack Compose, Coil (image loading)
-  * Data Storage: DataStore, Room Database
-  * Networking: Retrofit (for fetching shop items)
-  * Authentication: Firebase Auth
-  * Payments: M-Pesa API
 
 ## Assets & Attribution
 
