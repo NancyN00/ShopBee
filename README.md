@@ -5,10 +5,11 @@ ShopBee is an Android e-commerce app featuring products from the Fake Store API,
 ## Features
 - Splash & Onboarding screens
 - Authentication (Email/Google/Facebook Sign-In)
-- Account settings (e.g., font size, theme) stored using DataStore
-- Favorites saved using Room Database
 - Real-time product search with instant filtering
 - Products update when network reconnects (refresh or retry)
+- Favorites saved using Room Database
+- Account settings (e.g., font size, theme) stored using DataStore
+
 - Payments via M-Pesa (in progress)
 
 ## Technologies
