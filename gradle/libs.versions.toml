@@ -30,6 +30,10 @@ ktlint = "12.1.0"
 detekt = "1.23.5"
 appcompat = "1.7.1"
 room = "2.6.1"
+firebase-bom = "32.2.0"
+play-services-auth = "20.6.0"
+facebook-android-sdk = "17.2.0"
+googleServ = "4.4.0"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
@@ -69,6 +73,19 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
 
+# Firebase BOM
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+
+# Firebase Authentication dependencies (managed via BOM, no version needed)
+firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-bom" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebase-bom" }
+
+# Google Sign-In
+google-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+
+# Facebook Login
+facebook-login = { module = "com.facebook.android:facebook-login", version.ref = "facebook-android-sdk" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -78,3 +95,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServ" }

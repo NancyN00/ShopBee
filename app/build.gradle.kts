@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -93,4 +94,17 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.accompanist.swiperefresh)
+
+    // Firebase BOM
+    implementation(platform(libs.firebase.bom))
+
+    // Firebase Auth
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.auth.ktx)
+
+    // Google Sign-In
+    implementation(libs.google.auth)
+
+    // Facebook Login
+    implementation(libs.facebook.login)
 }
