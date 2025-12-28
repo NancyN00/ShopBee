@@ -8,6 +8,14 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.google.secrets)
+}
+
+
+secrets {
+
+    propertiesFileName = "secrets/google-services.json"
+
 }
 
 android {

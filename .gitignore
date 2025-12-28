@@ -14,5 +14,5 @@
 .cxx
 local.properties
 /app/src/test/java/com/nancy/shopbee/
-kotlin/error/
+**/.kotlin/
 /secrets/

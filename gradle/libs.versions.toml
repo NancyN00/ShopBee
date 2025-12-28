@@ -34,6 +34,7 @@ firebase-bom = "34.6.0"
 play-services-auth = "20.6.0"
 facebook-android-sdk = "18.1.3"
 googleServ = "4.4.4"
+secretsPlugin = "2.0.1"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
@@ -95,3 +96,4 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServ" }
+google-secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
