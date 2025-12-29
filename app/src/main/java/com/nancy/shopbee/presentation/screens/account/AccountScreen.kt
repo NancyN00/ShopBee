@@ -37,10 +37,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.nancy.shopbee.R
 import com.nancy.shopbee.navigation.Screens
+import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 import com.nancy.shopbee.ui.theme.ShopBeeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -85,14 +88,17 @@ fun AccountScreen(
             item {
                 Spacer(modifier = Modifier.height(40.dp))
 
-                LogoutContent()
+                LogoutContent(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun LogoutContent() {
+fun LogoutContent(
+    authViewModel: AuthViewModel = hiltViewModel(),
+    navController: NavController
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
@@ -103,8 +109,11 @@ fun LogoutContent() {
                 Modifier
                     .fillMaxWidth()
                     .clickable {
+                        authViewModel.logout()
+                        navController.navigate(Screens.LoginScreen.name){
+                            popUpTo(0) { inclusive = true } }
                         //  userPreferencesViewModel.logout()
-                        // navController.navigate(Screens.LoginScreen.name) {
+                        //  {
                         //  popUpTo(Screens.AccountScreen.name) { inclusive = true } }
                     }
                     .padding(20.dp),

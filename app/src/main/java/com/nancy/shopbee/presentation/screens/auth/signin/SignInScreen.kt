@@ -1,4 +1,4 @@
-package com.nancy.shopbee.presentation.screens.auth.login
+package com.nancy.shopbee.presentation.screens.auth.signin
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,15 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -30,59 +27,67 @@ import com.nancy.shopbee.presentation.components.RowText
 import com.nancy.shopbee.presentation.components.SocialMediaBtn
 import com.nancy.shopbee.presentation.components.TextInput
 import com.nancy.shopbee.presentation.screens.account.SettingsViewModel
-import kotlinx.coroutines.launch
+import com.nancy.shopbee.presentation.screens.auth.socialmedia.rememberSocialAuthHandler
+import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 
 @Composable
-fun LoginScreen(
+fun SignInScreen(
     navController: NavController,
-    viewModel: SettingsViewModel = hiltViewModel()
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
+    authViewModel : AuthViewModel = hiltViewModel()
 ) {
 
-    val scope = rememberCoroutineScope()
+    val socialAuthHandler = rememberSocialAuthHandler(navController, authViewModel, settingsViewModel)
 
-    var mail by remember { mutableStateOf("") }
-    var pass by remember { mutableStateOf("") }
+    val email by authViewModel.email
+    val password by authViewModel.password
+    val isLoading by authViewModel.isLoading
+    val errorMessage by authViewModel.errorMessage
 
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(text = "ShopBee", color = MaterialTheme.colorScheme.primary, fontSize = 30.sp)
 
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+        Spacer(modifier = Modifier.height(20.dp))
 
-            Text(text = "ShopBee",
-                color = MaterialTheme.colorScheme.primary,
-                fontSize = 30.sp
-                )
+        TextInput(
+            onVal = { authViewModel.email.value = it },
+            value = email,
+            placeholder = "Email"
+        )
 
-            Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-            TextInput(
-                onVal = { mail = it },
-                value = mail,
-                placeholder = "Email"
-            )
+        TextInput(
+            onVal = { authViewModel.password.value = it },
+            value = password,
+            placeholder = "Password"
+        )
 
-            Spacer(modifier = Modifier.height(10.dp))
+        if (errorMessage != null) {
+            Text(text = errorMessage!!, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
+        }
 
-            TextInput(
-                onVal = { pass = it },
-                value = pass,
-                placeholder = "Password"
-            )
-            Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
+        if (isLoading) {
+            CircularProgressIndicator()
+        } else {
             PrimaryButton(
                 text = "Login",
                 onClick = {
-                    scope.launch {
-                        // On success:
-                        // Save that user is signed in
-                        viewModel.setUserSignedIn(true)
-                        navController.navigate(Screens.HomeScreen.name)
+                    authViewModel.onSignIn {
+                        settingsViewModel.setUserSignedIn(true)
+                        navController.navigate(Screens.HomeScreen.name) {
+                            popUpTo(Screens.LoginScreen.name) { inclusive = true }
+                        }
                     }
                 },
             )
+        }
 
             Spacer(modifier = Modifier.height(15.dp))
 
@@ -102,8 +107,8 @@ fun LoginScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                SocialMediaBtn(name = "Google", onClick = {})
-                SocialMediaBtn(name = "Facebook", onClick = {})
+                SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
+           //     SocialMediaBtn(name = "Facebook", onClick = {})
                 SocialMediaBtn(name = "Tel", onClick = {})
             }
             Spacer(modifier = Modifier.height(10.dp))

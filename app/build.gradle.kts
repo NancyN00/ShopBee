@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -11,12 +13,15 @@ plugins {
     alias(libs.plugins.google.secrets)
 }
 
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
 
-secrets {
-
-    propertiesFileName = "secrets/google-services.json"
-
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
 }
+
+val googleId = localProperties.getProperty("GOOGLE_WEB_CLIENT_ID") ?: ""
+
 
 android {
     namespace = "com.nancy.shopbee"
@@ -30,6 +35,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleId\"")
+
     }
 
     buildTypes {
@@ -50,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     detekt {
@@ -112,6 +121,6 @@ dependencies {
     // Google Sign-In
     implementation(libs.google.auth)
 
-    // Facebook Login
-    implementation(libs.facebook.login)
+    // FacebooSSk Login
+  //  implementation(libs.facebook.login)
 }

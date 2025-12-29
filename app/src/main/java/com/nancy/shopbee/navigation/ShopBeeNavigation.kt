@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -25,8 +24,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.nancy.shopbee.presentation.screens.account.AccountScreen
 import com.nancy.shopbee.presentation.screens.account.SettingsScreen
-import com.nancy.shopbee.presentation.screens.auth.login.LoginScreen
-import com.nancy.shopbee.presentation.screens.auth.reg.RegScreen
+import com.nancy.shopbee.presentation.screens.auth.signin.SignInScreen
+import com.nancy.shopbee.presentation.screens.auth.signup.SignUpScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.screens.home.HomeScreen
 import com.nancy.shopbee.presentation.screens.home.details.ProductDetailsScreen
@@ -146,11 +145,11 @@ fun ShopBeeNavigation(
             }
 
             composable(route = Screens.LoginScreen.name) {
-                LoginScreen(navController)
+                SignInScreen(navController)
             }
 
             composable(route = Screens.RegScreen.name) {
-                RegScreen(navController)
+                SignUpScreen(navController)
             }
         }
     }
