@@ -116,7 +116,7 @@ fun SignUpScreen(
         ) {
             SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
            // SocialMediaBtn(name = "Facebook", onClick = {})
-            SocialMediaBtn(name = "Tel", onClick = {})
+            SocialMediaBtn(name = "Tel", onClick = { navController.navigate(Screens.PhoneEntrScreen.route)})
         }
             Spacer(modifier = Modifier.height(10.dp))
 

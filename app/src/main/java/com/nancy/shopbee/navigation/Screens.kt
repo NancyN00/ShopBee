@@ -11,4 +11,10 @@ enum class Screens(val route: String) {
 
     RegScreen("reg"),
     LoginScreen("login"),
+
+    PhoneEntrScreen("phonenumber"),
+
+    OtpVerScreen("otpver")
+
+
 }

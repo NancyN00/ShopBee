@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -33,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,6 +43,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.nancy.shopbee.R
 import com.nancy.shopbee.navigation.Screens
 import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
@@ -86,7 +91,7 @@ fun AccountScreen(
 
             // Logout Card
             item {
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 LogoutContent(navController = navController)
             }
@@ -212,65 +217,64 @@ fun EditProfileContent() {
         }
     }
 }
-
 @Composable
 fun ProfileContent() {
-    val userName = "Kerry" // Replace once fb implemented
-    val userEmail = "kerry@shopbee.com"
+    val user = Firebase.auth.currentUser
+    val name = user?.displayName ?: "No Name"
+    val email = user?.email ?: "No Email"
+    val photoUrl = user?.photoUrl //Google profile picture URL
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Row(
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically // Centers image and text vertically
         ) {
+            // Profile Image Box
             Box(
-                modifier =
-                    Modifier
-                        .size(90.dp)
-                        .clip(CircleShape)
-                        .background(
-                            brush =
-                                Brush.radialGradient(
-                                    colors =
-                                        listOf(
-                                            MaterialTheme.colorScheme.primary,
-                                            MaterialTheme.colorScheme.primaryContainer,
-                                        ),
-                                ),
-                        ),
-                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.primaryContainer),
+                contentAlignment = Alignment.Center
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.shopbee_splash),
-                    contentDescription = "Profile",
-                    modifier = Modifier.size(60.dp),
-                )
+                if (photoUrl != null) {
+                    // Google Profile Picture
+                    AsyncImage(
+                        model = photoUrl,
+                        contentDescription = "Profile Picture",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    // Fallback to your ShopBee icon if no photo exists
+                    Image(
+                        painter = painterResource(id = R.drawable.shopbee_splash),
+                        contentDescription = "Default Profile",
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
-            Column(
-                modifier = Modifier.padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+            Column {
                 Text(
-                    text = userName,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
+                    text = name,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
-
                 Text(
-                    text = userEmail,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    text = email,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun AccountScreenPreview() {

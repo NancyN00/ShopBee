@@ -26,6 +26,8 @@ import com.nancy.shopbee.presentation.screens.account.AccountScreen
 import com.nancy.shopbee.presentation.screens.account.SettingsScreen
 import com.nancy.shopbee.presentation.screens.auth.signin.SignInScreen
 import com.nancy.shopbee.presentation.screens.auth.signup.SignUpScreen
+import com.nancy.shopbee.presentation.screens.auth.socialmedia.tel.OtpVerifyScreen
+import com.nancy.shopbee.presentation.screens.auth.socialmedia.tel.PhoneEntryScreen
 import com.nancy.shopbee.presentation.screens.favorite.FavoriteScreen
 import com.nancy.shopbee.presentation.screens.home.HomeScreen
 import com.nancy.shopbee.presentation.screens.home.details.ProductDetailsScreen
@@ -150,6 +152,14 @@ fun ShopBeeNavigation(
 
             composable(route = Screens.RegScreen.name) {
                 SignUpScreen(navController)
+            }
+
+            composable(route = Screens.PhoneEntrScreen.route){
+                PhoneEntryScreen(navController)
+            }
+
+            composable(route = Screens.OtpVerScreen.route){
+                OtpVerifyScreen(navController)
             }
         }
     }
