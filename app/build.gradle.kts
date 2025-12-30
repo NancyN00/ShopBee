@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,7 +9,19 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.secrets)
 }
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val googleId = localProperties.getProperty("GOOGLE_WEB_CLIENT_ID") ?: ""
+
 
 android {
     namespace = "com.nancy.shopbee"
@@ -21,6 +35,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleId\"")
+
     }
 
     buildTypes {
@@ -41,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     detekt {
@@ -93,4 +111,16 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.accompanist.swiperefresh)
+
+    // Firebase BOM
+    implementation(platform(libs.firebase.bom))
+
+    // Firebase Auth
+    implementation(libs.firebase.auth)
+
+    // Google Sign-In
+    implementation(libs.google.auth)
+
+    // FacebookSSk Login
+  //  implementation(libs.facebook.login)
 }

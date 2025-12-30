@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun PrimaryButton(
@@ -27,8 +28,10 @@ fun PrimaryButton(
         modifier =
             modifier.fillMaxWidth()
                 .padding(start = 15.dp, end = 15.dp),
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(8.dp),
     ) {
-        Text(text)
+        Text(text,
+            fontSize = 15.sp
+            )
     }
 }

@@ -13,36 +13,48 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-// where is the module for this?
 @Singleton
 class SettingsDataStore
-    @Inject
-    constructor(
-        @ApplicationContext private val context: Context,
-    ) {
-        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "setting_pref")
-        private val setDataStore = context.dataStore
+@Inject
+constructor(
+    @ApplicationContext private val context: Context,
+) {
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "setting_pref")
+    private val setDataStore = context.dataStore
 
-        companion object {
-            val IS_DARK_THEME = booleanPreferencesKey("is_dark_theme")
-            val FONT_SIZE = intPreferencesKey("font_size")
-        }
 
-        val isDarkThemeFlow: Flow<Boolean> =
-            setDataStore.data
-                .map { preferences ->
-                    preferences[IS_DARK_THEME] ?: false
-                }
+    companion object {
+        val IS_DARK_THEME = booleanPreferencesKey("is_dark_theme")
+        val FONT_SIZE = intPreferencesKey("font_size")
 
-        val fontSizeFlow: Flow<Int> = setDataStore.data.map { it[FONT_SIZE] ?: 16 }
+        private val USER_SIGNED_IN_KEY = booleanPreferencesKey("user_signed_in")
+    }
 
-        suspend fun setDarkTheme(isDark: Boolean) {
-            setDataStore.edit { preferences ->
-                preferences[IS_DARK_THEME] = isDark
-            }
-        }
+    // --- User sign-in state ---
+    val isUserSignedIn: Flow<Boolean> = context.dataStore.data
+        .map { prefs -> prefs[USER_SIGNED_IN_KEY] ?: false }
 
-        suspend fun setFontSize(size: Int) {
-            setDataStore.edit { it[FONT_SIZE] = size }
+    suspend fun setUserSignedIn(value: Boolean) {
+        context.dataStore.edit { prefs ->
+            prefs[USER_SIGNED_IN_KEY] = value
         }
     }
+
+    val isDarkThemeFlow: Flow<Boolean> =
+        setDataStore.data
+            .map { preferences ->
+                preferences[IS_DARK_THEME] ?: false
+            }
+
+    val fontSizeFlow: Flow<Int> = setDataStore.data.map { it[FONT_SIZE] ?: 16 }
+
+    suspend fun setDarkTheme(isDark: Boolean) {
+        setDataStore.edit { preferences ->
+            preferences[IS_DARK_THEME] = isDark
+        }
+    }
+
+    suspend fun setFontSize(size: Int) {
+        setDataStore.edit { it[FONT_SIZE] = size }
+    }
+}

@@ -60,7 +60,7 @@ fun ShopBeeSearch(
                 unfocusedContainerColor = MaterialTheme.colorScheme.primary,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                cursorColor = MaterialTheme.colorScheme.primary,
+                cursorColor = MaterialTheme.colorScheme.surface,
             ),
         trailingIcon = {
             Row(

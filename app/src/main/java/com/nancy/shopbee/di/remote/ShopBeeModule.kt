@@ -1,7 +1,11 @@
 package com.nancy.shopbee.di.remote
 
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.nancy.shopbee.data.remote.ShopBeeApiService
 import com.nancy.shopbee.data.repository.ShopBeeRepositoryImpl
+import com.nancy.shopbee.domain.repository.AuthRepository
 import com.nancy.shopbee.domain.repository.ShopBeeRepository
 import com.nancy.shopbee.utils.Constant.BASE_URL
 import dagger.Module
@@ -29,5 +33,17 @@ object ShopBeeModule {
     @Provides
     fun provideProduct(api: ShopBeeApiService): ShopBeeRepository {
         return ShopBeeRepositoryImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        auth: FirebaseAuth
+    ): AuthRepository {
+        return AuthRepository(auth)
     }
 }
