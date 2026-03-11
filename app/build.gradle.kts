@@ -95,7 +95,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.coil.compose)
-    implementation(libs.core.splashscreen) // Dagger - Hilt
+    implementation(libs.core.splashscreen)
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.hiltNavigationCompose)
@@ -109,6 +109,7 @@ dependencies {
 
     // serialization
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.logging.interceptor)
 
     implementation(libs.accompanist.swiperefresh)
 
