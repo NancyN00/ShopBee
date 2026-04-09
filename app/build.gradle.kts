@@ -38,6 +38,13 @@ android {
 
         buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleId\"")
 
+            //Mpesa
+        buildConfigField("String", "MPESA_CONSUMER_KEY", "\"${localProperties.getProperty("MPESA_CONSUMER_KEY") ?: ""}\"")
+        buildConfigField("String", "MPESA_CONSUMER_SECRET", "\"${localProperties.getProperty("MPESA_CONSUMER_SECRET") ?: ""}\"")
+        buildConfigField("String", "MPESA_CALLBACK_URL", "\"${localProperties.getProperty("MPESA_CALLBACK_URL") ?: ""}\"")
+        buildConfigField("String", "MPESA_SHORT_CODE", "\"${localProperties.getProperty("MPESA_SHORT_CODE") ?: ""}\"")
+        buildConfigField("String", "MPESA_PASSKEY", "\"${localProperties.getProperty("MPESA_PASSKEY") ?: ""}\"")
+
     }
 
     buildTypes {
