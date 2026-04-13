@@ -20,7 +20,7 @@ The app uses these technologies:
 - **Data Storage:** DataStore, Room Database
 - **Networking:** Retrofit (for fetching shop items)
 - **Authentication:** Firebase Auth
-- **Payments:** M-Pesa API (in-progress)
+- **Payments:** M-Pesa API
 
 
 ## Assets & Attribution
