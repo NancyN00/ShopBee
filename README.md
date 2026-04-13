@@ -10,7 +10,7 @@ ShopBee is an Android e-commerce app featuring products from the Fake Store API,
 - Favorites saved using Room Database
 - Account settings (e.g., font size, theme) stored using DataStore
 
-- Payments via M-Pesa (in progress)
+- Payments via M-Pesa 
 
 ## Technologies
 The app uses these technologies:
@@ -20,7 +20,7 @@ The app uses these technologies:
 - **Data Storage:** DataStore, Room Database
 - **Networking:** Retrofit (for fetching shop items)
 - **Authentication:** Firebase Auth
-- **Payments:** M-Pesa API
+- **Payments:** Daraja M-Pesa API
 
 
 ## Assets & Attribution
