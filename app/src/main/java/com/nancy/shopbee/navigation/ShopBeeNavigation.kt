@@ -1,6 +1,7 @@
 package com.nancy.shopbee.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -62,6 +63,7 @@ fun ShopBeeNavigation(
     }
 
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         bottomBar = {
             if (showBottomNav) {
                 NavigationBar(
@@ -106,7 +108,8 @@ fun ShopBeeNavigation(
         NavHost(
             navController = navController,
             startDestination = startDestination,
-            modifier = Modifier.padding(paddingValues),
+            modifier = Modifier
+                .fillMaxSize().padding(paddingValues),
         ) {
             composable(Screens.OnboardScreen.name) {
                 OnboardingScreen {

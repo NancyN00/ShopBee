@@ -1,5 +1,7 @@
 package com.nancy.shopbee.presentation.screens
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
@@ -7,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import com.nancy.shopbee.domain.SettingsDataStore
@@ -30,19 +33,19 @@ fun MainScreen(
 
     CompositionLocalProvider(LocalDensity provides customDensity) {
         ShopBeeTheme(darkTheme = isDarkTheme) {
-            // Check if onboarding completed
-            var showOnboarding by remember {
-                mutableStateOf(!onboardingUtils.isOnboardingCompleted())
+            Surface(modifier = Modifier.fillMaxSize()) {
+                var showOnboarding by remember {
+                    mutableStateOf(!onboardingUtils.isOnboardingCompleted())
+                }
+
+                val isSignedIn by settingsDataStore.isUserSignedIn.collectAsState(initial = false)
+
+                ShopBeeNavigation(
+                    showOnboarding = showOnboarding,
+                    onboardingUtils = onboardingUtils,
+                    isSignedIn = isSignedIn
+                )
             }
-
-            // Check if user is already signed in
-            val isSignedIn by settingsDataStore.isUserSignedIn.collectAsState(initial = false)
-
-            ShopBeeNavigation(
-                showOnboarding = showOnboarding,
-                onboardingUtils = onboardingUtils,
-                isSignedIn = isSignedIn
-            )
         }
     }
 }

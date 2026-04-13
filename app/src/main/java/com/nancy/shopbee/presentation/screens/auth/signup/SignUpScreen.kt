@@ -55,7 +55,6 @@ fun SignUpScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Note: Name field would need to be added to ViewModel if you want to save it to Firestore later
         TextInput(onVal = { /* name logic */ }, value = "", placeholder = "Name")
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -115,7 +114,7 @@ fun SignUpScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
-           // SocialMediaBtn(name = "Facebook", onClick = {})
+            SocialMediaBtn(name = "Facebook", onClick = {})
             SocialMediaBtn(name = "Tel", onClick = { navController.navigate(Screens.PhoneEntrScreen.route)})
         }
             Spacer(modifier = Modifier.height(10.dp))

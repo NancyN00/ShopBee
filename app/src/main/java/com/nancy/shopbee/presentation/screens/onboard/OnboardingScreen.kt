@@ -1,16 +1,18 @@
 package com.nancy.shopbee.presentation.screens.onboard
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -25,40 +27,48 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun OnboardingScreen(onFinished: () -> Unit) {
-    val pages =
-        listOf(
-            OnboardingModel.FirstOnboardingPage,
-            OnboardingModel.SecondOnboardingPage,
-            OnboardingModel.ThirdOnboardingPage,
-        )
+    val pages = listOf(
+        OnboardingModel.FirstOnboardingPage,
+        OnboardingModel.SecondOnboardingPage,
+        OnboardingModel.ThirdOnboardingPage,
+    )
 
     val pagerState = rememberPagerState(initialPage = 0) { pages.size }
     val scope = rememberCoroutineScope()
 
-    val buttonState =
-        remember {
-            derivedStateOf {
-                when (pagerState.currentPage) {
-                    0 -> listOf("", "Next")
-                    1 -> listOf("Back", "Next")
-                    2 -> listOf("Back", "Start")
-                    else -> listOf("", "")
-                }
+    val buttonState = remember {
+        derivedStateOf {
+            when (pagerState.currentPage) {
+                0 -> listOf("", "Next")
+                1 -> listOf("Back", "Next")
+                2 -> listOf("Back", "Start")
+                else -> listOf("", "")
             }
         }
+    }
 
-    Scaffold(
-        bottomBar = {
-            OnboardingBottomBar(
-                pagerState = pagerState,
-                buttonState = buttonState.value,
-                pageCount = pages.size,
-                onFinished = onFinished,
-                scope = scope,
-            )
-        },
+    // A Solid Column mapping the entire screen makes sure nothing floats
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary)
     ) {
-        OnboardingPager(pages = pages, pagerState = pagerState, modifier = Modifier.padding(it))
+        // The Pager gets 'weight(1f)' to consume exactly all available space,
+        // aggressively pushing the BottomBar down.
+        OnboardingPager(
+            pages = pages,
+            pagerState = pagerState,
+            modifier = Modifier.weight(1f)
+        )
+
+        // The BottomBar stays rigidly at the bottom
+        OnboardingBottomBar(
+            pagerState = pagerState,
+            buttonState = buttonState.value,
+            pageCount = pages.size,
+            onFinished = onFinished,
+            scope = scope,
+        )
     }
 }
 
@@ -70,7 +80,11 @@ private fun OnboardingPager(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        HorizontalPager(state = pagerState) { index ->
+        // Setting fillMaxSize forces it to use the weight allotted to it
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize()
+        ) { index ->
             OnboardingItemUi(onboardingModel = pages[index])
         }
     }
@@ -86,11 +100,11 @@ private fun OnboardingBottomBar(
     scope: kotlinx.coroutines.CoroutineScope,
 ) {
     Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(horizontal = 24.dp, vertical = 16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.primary)
+            .navigationBarsPadding() // Keep this so buttons don't overlap system Android bar
+            .padding(horizontal = 24.dp, vertical = 16.dp), // <--- Change vertical = 0.dp if you want it mathematically flush
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -134,5 +148,5 @@ private fun OnboardingBottomBar(
 @Preview(showBackground = true)
 @Composable
 fun OnboardingScreenPreview() {
-    // OnboardingScreen {}
+    OnboardingScreen {}
 }

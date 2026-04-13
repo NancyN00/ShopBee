@@ -108,7 +108,7 @@ fun SignInScreen(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
-           //     SocialMediaBtn(name = "Facebook", onClick = {})
+               SocialMediaBtn(name = "Facebook", onClick = {})
                 SocialMediaBtn(name = "Tel", onClick = {  navController.navigate(Screens.PhoneEntrScreen.route)})
             }
             Spacer(modifier = Modifier.height(10.dp))
