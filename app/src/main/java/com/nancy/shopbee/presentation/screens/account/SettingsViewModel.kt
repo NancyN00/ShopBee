@@ -34,14 +34,14 @@ class SettingsViewModel
             viewModelScope.launch { settingsDataStore.setFontSize(size) }
         }
 
-    // --- User Sign-In State ---
-    val isUserSignedIn =
-        settingsDataStore.isUserSignedIn
-            .stateIn(viewModelScope, SharingStarted.Lazily, false)
+        // --- User Sign-In State ---
+        val isUserSignedIn =
+            settingsDataStore.isUserSignedIn
+                .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-    fun setUserSignedIn(value: Boolean) {
-        viewModelScope.launch {
-            settingsDataStore.setUserSignedIn(value)
+        fun setUserSignedIn(value: Boolean) {
+            viewModelScope.launch {
+                settingsDataStore.setUserSignedIn(value)
+            }
         }
-    }
     }

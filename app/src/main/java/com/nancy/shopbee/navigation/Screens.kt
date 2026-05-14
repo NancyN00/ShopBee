@@ -1,7 +1,6 @@
 package com.nancy.shopbee.navigation
 
 enum class Screens(val route: String) {
-
     OnboardScreen("onboard"),
     HomeScreen("home"),
     FavoriteScreen("favorites"),
@@ -14,7 +13,5 @@ enum class Screens(val route: String) {
 
     PhoneEntrScreen("phonenumber"),
 
-    OtpVerScreen("otpver")
-
-
+    OtpVerScreen("otpver"),
 }

@@ -4,3 +4,5 @@ root = true
 ktlint_standard_final-newline = enabled
 ktlint_function_naming_ignore_when_annotated_with = Composable
 insert_final_newline = true
+ktlint_standard_no-wildcard-imports = disabled
+ij_kotlin_packages_to_use_import_on_demand=*

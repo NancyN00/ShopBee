@@ -27,38 +27,41 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun OnboardingScreen(onFinished: () -> Unit) {
-    val pages = listOf(
-        OnboardingModel.FirstOnboardingPage,
-        OnboardingModel.SecondOnboardingPage,
-        OnboardingModel.ThirdOnboardingPage,
-    )
+    val pages =
+        listOf(
+            OnboardingModel.FirstOnboardingPage,
+            OnboardingModel.SecondOnboardingPage,
+            OnboardingModel.ThirdOnboardingPage,
+        )
 
     val pagerState = rememberPagerState(initialPage = 0) { pages.size }
     val scope = rememberCoroutineScope()
 
-    val buttonState = remember {
-        derivedStateOf {
-            when (pagerState.currentPage) {
-                0 -> listOf("", "Next")
-                1 -> listOf("Back", "Next")
-                2 -> listOf("Back", "Start")
-                else -> listOf("", "")
+    val buttonState =
+        remember {
+            derivedStateOf {
+                when (pagerState.currentPage) {
+                    0 -> listOf("", "Next")
+                    1 -> listOf("Back", "Next")
+                    2 -> listOf("Back", "Start")
+                    else -> listOf("", "")
+                }
             }
         }
-    }
 
     // A Solid Column mapping the entire screen makes sure nothing floats
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.primary)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.primary),
     ) {
         // The Pager gets 'weight(1f)' to consume exactly all available space,
         // aggressively pushing the BottomBar down.
         OnboardingPager(
             pages = pages,
             pagerState = pagerState,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         // The BottomBar stays rigidly at the bottom
@@ -83,7 +86,7 @@ private fun OnboardingPager(
         // Setting fillMaxSize forces it to use the weight allotted to it
         HorizontalPager(
             state = pagerState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) { index ->
             OnboardingItemUi(onboardingModel = pages[index])
         }
@@ -100,11 +103,13 @@ private fun OnboardingBottomBar(
     scope: kotlinx.coroutines.CoroutineScope,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
-            .navigationBarsPadding() // Keep this so buttons don't overlap system Android bar
-            .padding(horizontal = 24.dp, vertical = 16.dp), // <--- Change vertical = 0.dp if you want it mathematically flush
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primary)
+                .navigationBarsPadding() // Keep this so buttons don't overlap system Android bar
+                .padding(horizontal = 24.dp, vertical = 16.dp),
+        // <--- Change vertical = 0.dp if you want it mathematically flush
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {

@@ -31,7 +31,7 @@ import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 @Composable
 fun OtpVerifyScreen(
     navController: NavController,
-    authViewModel: AuthViewModel = hiltViewModel()
+    authViewModel: AuthViewModel = hiltViewModel(),
 ) {
     var otpCode by remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -44,16 +44,17 @@ fun OtpVerifyScreen(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = "Verify your number",
             style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -61,7 +62,7 @@ fun OtpVerifyScreen(
         Text(
             text = "Enter the 6-digit code sent to your phone.",
             textAlign = TextAlign.Center,
-            //color = Color.Gray
+            // color = Color.Gray
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -69,7 +70,7 @@ fun OtpVerifyScreen(
         TextInput(
             onVal = { if (it.length <= 6) otpCode = it },
             value = otpCode,
-            placeholder = "Enter 6-digit code"
+            placeholder = "Enter 6-digit code",
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -86,7 +87,7 @@ fun OtpVerifyScreen(
                 } else {
                     Toast.makeText(context, "Please enter all 6 digits", Toast.LENGTH_SHORT).show()
                 }
-            }
+            },
         )
     }
 }

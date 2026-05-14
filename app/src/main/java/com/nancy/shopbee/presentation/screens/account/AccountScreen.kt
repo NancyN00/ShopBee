@@ -33,7 +33,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -102,7 +101,7 @@ fun AccountScreen(
 @Composable
 fun LogoutContent(
     authViewModel: AuthViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -115,8 +114,9 @@ fun LogoutContent(
                     .fillMaxWidth()
                     .clickable {
                         authViewModel.logout()
-                        navController.navigate(Screens.LoginScreen.name){
-                            popUpTo(0) { inclusive = true } }
+                        navController.navigate(Screens.LoginScreen.name) {
+                            popUpTo(0) { inclusive = true }
+                        }
                     }
                     .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -214,12 +214,13 @@ fun EditProfileContent() {
         }
     }
 }
+
 @Composable
 fun ProfileContent() {
     val user = Firebase.auth.currentUser
     val name = user?.displayName ?: "No Name"
     val email = user?.email ?: "No Email"
-    val photoUrl = user?.photoUrl //Google profile picture URL
+    val photoUrl = user?.photoUrl // Google profile picture URL
 
     Card(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -227,15 +228,16 @@ fun ProfileContent() {
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically // Centers image and text vertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             // Profile Image Box
             Box(
-                modifier = Modifier
-                    .size(64.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
+                modifier =
+                    Modifier
+                        .size(64.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primaryContainer),
+                contentAlignment = Alignment.Center,
             ) {
                 if (photoUrl != null) {
                     // Google Profile Picture
@@ -243,14 +245,14 @@ fun ProfileContent() {
                         model = photoUrl,
                         contentDescription = "Profile Picture",
                         modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
                     )
                 } else {
                     // if photo don't exist, use defined image
                     Image(
                         painter = painterResource(id = R.drawable.shopbee_splash),
                         contentDescription = "Default Profile",
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.dp),
                     )
                 }
             }
@@ -261,17 +263,18 @@ fun ProfileContent() {
                 Text(
                     text = name,
                     style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = email,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun AccountScreenPreview() {

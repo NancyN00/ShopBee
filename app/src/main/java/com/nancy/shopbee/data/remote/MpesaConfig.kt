@@ -5,5 +5,3 @@ object MpesaConfig {
 
     const val TRANSACTION_TYPE = "CustomerPayBillOnline"
 }
-
-

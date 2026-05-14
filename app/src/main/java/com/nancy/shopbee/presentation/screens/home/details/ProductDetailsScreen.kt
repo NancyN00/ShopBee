@@ -1,7 +1,5 @@
 package com.nancy.shopbee.presentation.screens.home.details
 
-import com.nancy.shopbee.presentation.screens.home.ProductListViewModel
-import com.nancy.shopbee.presentation.screens.home.details.mpesa.MpesaPaymentDialog
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +19,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.nancy.shopbee.domain.models.ProductDetailsEntity
 import com.nancy.shopbee.presentation.screens.favorite.FavProdViewModel
+import com.nancy.shopbee.presentation.screens.home.ProductListViewModel
+import com.nancy.shopbee.presentation.screens.home.details.mpesa.MpesaPaymentDialog
 
 @Composable
 fun ProductDetailsScreen(
@@ -47,16 +47,17 @@ fun ProductDetailsScreen(
     val isFavorite by favoriteProdViewModel.isFavorite.collectAsState()
 
     product?.let { p ->
-        val productDetails = ProductDetailsEntity(
-            id = p.id,
-            title = p.title,
-            price = p.price,
-            description = p.description,
-            category = p.category,
-            image = p.image,
-            rate = p.rating.rate,
-            count = p.rating.count,
-        )
+        val productDetails =
+            ProductDetailsEntity(
+                id = p.id,
+                title = p.title,
+                price = p.price,
+                description = p.description,
+                category = p.category,
+                image = p.image,
+                rate = p.rating.rate,
+                count = p.rating.count,
+            )
 
         ProductDetailsItemLayout(
             product = productDetails,
@@ -73,10 +74,9 @@ fun ProductDetailsScreen(
             MpesaPaymentDialog(
                 productName = productDetails.title,
                 amount = productDetails.price,
-                onDismiss = { showPayDialog = false }
+                onDismiss = { showPayDialog = false },
             )
         }
-
     } ?: run {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
@@ -86,4 +86,3 @@ fun ProductDetailsScreen(
         }
     }
 }
-

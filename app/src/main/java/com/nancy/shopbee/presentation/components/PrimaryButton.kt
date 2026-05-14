@@ -30,8 +30,9 @@ fun PrimaryButton(
                 .padding(start = 15.dp, end = 15.dp),
         shape = RoundedCornerShape(8.dp),
     ) {
-        Text(text,
-            fontSize = 15.sp
-            )
+        Text(
+            text,
+            fontSize = 15.sp,
+        )
     }
 }

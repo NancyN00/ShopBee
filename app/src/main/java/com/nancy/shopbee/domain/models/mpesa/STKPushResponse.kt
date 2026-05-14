@@ -1,6 +1,5 @@
 package com.nancy.shopbee.domain.models.mpesa
 
-
 import com.google.gson.annotations.SerializedName
 
 data class STKPushResponse(
@@ -8,5 +7,5 @@ data class STKPushResponse(
     @SerializedName("CheckoutRequestID") val checkoutRequestID: String,
     @SerializedName("ResponseCode") val responseCode: String,
     @SerializedName("ResponseDescription") val responseDescription: String,
-    @SerializedName("CustomerMessage") val customerMessage: String
+    @SerializedName("CustomerMessage") val customerMessage: String,
 )

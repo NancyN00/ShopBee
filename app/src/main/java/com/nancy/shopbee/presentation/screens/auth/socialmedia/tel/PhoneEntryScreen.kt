@@ -33,25 +33,24 @@ import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 @SuppressLint("ContextCastToActivity")
 @Composable
 fun PhoneEntryScreen(
-    navController : NavController,
-    authViewModel : AuthViewModel = hiltViewModel()
+    navController: NavController,
+    authViewModel: AuthViewModel = hiltViewModel(),
 ) {
-
     var phoneNumber by remember { mutableStateOf("") }
     val context = LocalContext.current as Activity // Needed for Firebase Phone Auth
 
-
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = "Log in with your phone number",
             style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -59,12 +58,12 @@ fun PhoneEntryScreen(
         Text(
             text = "We will send a 6-digit code to verify your account.",
             textAlign = TextAlign.Center,
-         //   color = Color.Gray
+            //   color = Color.Gray
         )
         TextInput(
             onVal = { if (it.length <= 15) phoneNumber = it },
             value = phoneNumber,
-            placeholder = "e.g. +254700000000"
+            placeholder = "e.g. +254700000000",
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -72,13 +71,14 @@ fun PhoneEntryScreen(
         PrimaryButton(
             text = "Send Verification Code",
             onClick = {
-                val formattedNumber = if (phoneNumber.startsWith("+")) {
-                    phoneNumber
-                } else if (phoneNumber.startsWith("0")) {
-                    "+254${phoneNumber.substring(1)}"
-                } else {
-                    "+254$phoneNumber"
-                }
+                val formattedNumber =
+                    if (phoneNumber.startsWith("+")) {
+                        phoneNumber
+                    } else if (phoneNumber.startsWith("0")) {
+                        "+254${phoneNumber.substring(1)}"
+                    } else {
+                        "+254$phoneNumber"
+                    }
 
                 if (formattedNumber.length >= 12) { // +254 plus 9 digits
                     authViewModel.sendOtp(formattedNumber, context) {
@@ -87,16 +87,13 @@ fun PhoneEntryScreen(
                 } else {
                     Toast.makeText(context, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
                 }
-            }
+            },
         )
-
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PhoneNumberScreenPreview() {
-   //PhoneEntryScreen()
+    // PhoneEntryScreen()
 }
-

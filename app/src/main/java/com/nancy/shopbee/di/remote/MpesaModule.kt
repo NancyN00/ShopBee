@@ -19,17 +19,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object MpesaModule {
-
     @Provides
     @Singleton
     @Named("mpesa")
     fun provideMpesaRetrofit(): Retrofit {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
+        val logging =
+            HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+        val client =
+            OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build()
 
         return Retrofit.Builder()
             .baseUrl(MpesaConfig.BASE_URL)
@@ -40,23 +41,22 @@ object MpesaModule {
 
     @Provides
     @Singleton
-    fun provideMpesaApiService(@Named("mpesa") retrofit: Retrofit): MpesaApiService {
+    fun provideMpesaApiService(
+        @Named("mpesa") retrofit: Retrofit,
+    ): MpesaApiService {
         return retrofit.create(MpesaApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideMpesaRepository(
-        mpesaApiService: MpesaApiService
-    ): MpesaRepository {
+    fun provideMpesaRepository(mpesaApiService: MpesaApiService): MpesaRepository {
         return MpesaRepositoryImpl(
             mpesaApiService = mpesaApiService,
             consumerKey = BuildConfig.MPESA_CONSUMER_KEY,
             consumerSecret = BuildConfig.MPESA_CONSUMER_SECRET,
             callbackUrl = BuildConfig.MPESA_CALLBACK_URL,
             shortCode = BuildConfig.MPESA_SHORT_CODE,
-            passKey = BuildConfig.MPESA_PASSKEY
-
+            passKey = BuildConfig.MPESA_PASSKEY,
         )
     }
 }

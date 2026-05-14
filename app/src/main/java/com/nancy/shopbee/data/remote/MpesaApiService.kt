@@ -12,12 +12,12 @@ import retrofit2.http.POST
 interface MpesaApiService {
     @GET("oauth/v1/generate?grant_type=client_credentials")
     suspend fun getAccessToken(
-        @Header("Authorization") credentials: String
+        @Header("Authorization") credentials: String,
     ): AccessTokenResponse
 
     @POST("mpesa/stkpush/v1/processrequest")
     suspend fun initiateStkPush(
         @Header("Authorization") token: String,
-        @Body request: StkPushRequest
+        @Body request: StkPushRequest,
     ): STKPushResponse
 }

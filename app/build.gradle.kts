@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.google.services)
-    alias(libs.plugins.google.secrets)
+    // alias(libs.plugins.google.secrets)
 }
 
 val localProperties = Properties()
@@ -21,7 +21,6 @@ if (localPropertiesFile.exists()) {
 }
 
 val googleId = localProperties.getProperty("GOOGLE_WEB_CLIENT_ID") ?: ""
-
 
 android {
     namespace = "com.nancy.shopbee"
@@ -38,13 +37,20 @@ android {
 
         buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleId\"")
 
-            //Mpesa
+        // Mpesa
         buildConfigField("String", "MPESA_CONSUMER_KEY", "\"${localProperties.getProperty("MPESA_CONSUMER_KEY") ?: ""}\"")
         buildConfigField("String", "MPESA_CONSUMER_SECRET", "\"${localProperties.getProperty("MPESA_CONSUMER_SECRET") ?: ""}\"")
         buildConfigField("String", "MPESA_CALLBACK_URL", "\"${localProperties.getProperty("MPESA_CALLBACK_URL") ?: ""}\"")
         buildConfigField("String", "MPESA_SHORT_CODE", "\"${localProperties.getProperty("MPESA_SHORT_CODE") ?: ""}\"")
         buildConfigField("String", "MPESA_PASSKEY", "\"${localProperties.getProperty("MPESA_PASSKEY") ?: ""}\"")
 
+        // facebook id token
+        val fbAppId = localProperties.getProperty("FACEBOOK_APP_ID") ?: ""
+        val fbClientToken = localProperties.getProperty("FACEBOOK_CLIENT_TOKEN") ?: ""
+
+        resValue("string", "facebook_app_id", fbAppId)
+        resValue("string", "facebook_client_token", fbClientToken)
+        resValue("string", "facebook_login_protocol_scheme", "fb$fbAppId")
     }
 
     buildTypes {
@@ -130,5 +136,5 @@ dependencies {
     implementation(libs.google.auth)
 
     // FacebookSSk Login
-  //  implementation(libs.facebook.login)
+    implementation(libs.facebook.login)
 }

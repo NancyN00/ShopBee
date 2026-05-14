@@ -20,16 +20,17 @@ import com.nancy.shopbee.utils.OnboardingUtils
 @Composable
 fun MainScreen(
     onboardingUtils: OnboardingUtils,
-    settingsDataStore: SettingsDataStore
+    settingsDataStore: SettingsDataStore,
 ) {
     // Read DataStore → Apply Theme instantly
     val isDarkTheme by settingsDataStore.isDarkThemeFlow.collectAsState(initial = false)
     val fontSize by settingsDataStore.fontSizeFlow.collectAsState(initial = 16)
 
-    val customDensity = Density(
-        density = LocalDensity.current.density,
-        fontScale = fontSize / 16f
-    )
+    val customDensity =
+        Density(
+            density = LocalDensity.current.density,
+            fontScale = fontSize / 16f,
+        )
 
     CompositionLocalProvider(LocalDensity provides customDensity) {
         ShopBeeTheme(darkTheme = isDarkTheme) {
@@ -43,7 +44,7 @@ fun MainScreen(
                 ShopBeeNavigation(
                     showOnboarding = showOnboarding,
                     onboardingUtils = onboardingUtils,
-                    isSignedIn = isSignedIn
+                    isSignedIn = isSignedIn,
                 )
             }
         }

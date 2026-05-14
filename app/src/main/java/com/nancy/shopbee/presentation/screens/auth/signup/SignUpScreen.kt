@@ -33,12 +33,10 @@ import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 @Composable
 fun SignUpScreen(
     navController: NavController,
-    authViewModel : AuthViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel(),
     settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
-
     val socialAuthHandler = rememberSocialAuthHandler(navController, authViewModel, settingsViewModel)
-
 
     // Connect local states to ViewModel states
     val email by authViewModel.email
@@ -62,7 +60,7 @@ fun SignUpScreen(
         TextInput(
             onVal = { authViewModel.email.value = it },
             value = email,
-            placeholder = "Email"
+            placeholder = "Email",
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -70,7 +68,7 @@ fun SignUpScreen(
         TextInput(
             onVal = { authViewModel.password.value = it },
             value = password,
-            placeholder = "Password"
+            placeholder = "Password",
         )
 
         if (errorMessage != null) {
@@ -97,35 +95,34 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(15.dp))
 
         HorizontalDivider(
-            modifier = Modifier
-                .width(300.dp)
-                .align(Alignment.CenterHorizontally),
+            modifier =
+                Modifier
+                    .width(300.dp)
+                    .align(Alignment.CenterHorizontally),
             thickness = 1.dp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
+            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
         )
 
-            Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
-            SocialMediaBtn(name = "Facebook", onClick = {})
-            SocialMediaBtn(name = "Tel", onClick = { navController.navigate(Screens.PhoneEntrScreen.route)})
+            SocialMediaBtn(name = "Google", onClick = { socialAuthHandler.onGoogleClick() })
+            SocialMediaBtn(name = "Facebook", onClick = { socialAuthHandler.onFacebookClick() })
+            SocialMediaBtn(name = "Tel", onClick = { navController.navigate(Screens.PhoneEntrScreen.route) })
         }
-            Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-
-            RowText(
-                text1 = "Have an account? ",
-                text2 = "Login",
-                onClickText2 = {navController.navigate(Screens.LoginScreen.name)}
-            )
-
-        }
+        RowText(
+            text1 = "Have an account? ",
+            text2 = "Login",
+            onClickText2 = { navController.navigate(Screens.LoginScreen.name) },
+        )
     }
-
+}

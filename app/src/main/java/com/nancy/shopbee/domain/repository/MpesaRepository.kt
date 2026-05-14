@@ -8,6 +8,6 @@ interface MpesaRepository {
         phoneNumber: String,
         amount: String,
         accountRef: String,
-        description: String
+        description: String,
     ): Resource<STKPushResponse>
 }

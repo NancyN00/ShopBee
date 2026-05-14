@@ -13,6 +13,5 @@ data class StkPushRequest(
     @SerializedName("PhoneNumber") val phoneNumber: String,
     @SerializedName("CallBackURL") val callBackURL: String,
     @SerializedName("AccountReference") val accountReference: String,
-    @SerializedName("TransactionDesc") val transactionDesc: String
+    @SerializedName("TransactionDesc") val transactionDesc: String,
 )
-

@@ -34,9 +34,8 @@ import com.nancy.shopbee.presentation.screens.auth.viewmodel.AuthViewModel
 fun SignInScreen(
     navController: NavController,
     settingsViewModel: SettingsViewModel = hiltViewModel(),
-    authViewModel : AuthViewModel = hiltViewModel()
+    authViewModel: AuthViewModel = hiltViewModel(),
 ) {
-
     val socialAuthHandler = rememberSocialAuthHandler(navController, authViewModel, settingsViewModel)
 
     val email by authViewModel.email
@@ -56,7 +55,7 @@ fun SignInScreen(
         TextInput(
             onVal = { authViewModel.email.value = it },
             value = email,
-            placeholder = "Email"
+            placeholder = "Email",
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -64,7 +63,7 @@ fun SignInScreen(
         TextInput(
             onVal = { authViewModel.password.value = it },
             value = password,
-            placeholder = "Password"
+            placeholder = "Password",
         )
 
         if (errorMessage != null) {
@@ -89,44 +88,43 @@ fun SignInScreen(
             )
         }
 
-            Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
-            HorizontalDivider(
-                modifier = Modifier
+        HorizontalDivider(
+            modifier =
+                Modifier
                     .width(300.dp)
                     .align(Alignment.CenterHorizontally),
-                thickness = 1.dp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
-            )
+            thickness = 1.dp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
+        )
 
-            Spacer(modifier = Modifier.height(15.dp))
-            Row(
-                modifier = Modifier
+        Spacer(modifier = Modifier.height(15.dp))
+        Row(
+            modifier =
+                Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                SocialMediaBtn(name = "Google", onClick = {socialAuthHandler.onGoogleClick()})
-               SocialMediaBtn(name = "Facebook", onClick = {})
-                SocialMediaBtn(name = "Tel", onClick = {  navController.navigate(Screens.PhoneEntrScreen.route)})
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-
-            RowText(
-                text1 = "Forgot your ",
-                text2 = "Password?",
-                onClickText2 = {}
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-
-            RowText(
-                text1 = "New to ShopBee ",
-                text2 = "Register",
-                onClickText2 = { navController.navigate(Screens.RegScreen.name)}
-            )
-
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            SocialMediaBtn(name = "Google", onClick = { socialAuthHandler.onGoogleClick() })
+            SocialMediaBtn(name = "Facebook", onClick = { socialAuthHandler.onFacebookClick() })
+            SocialMediaBtn(name = "Tel", onClick = { navController.navigate(Screens.PhoneEntrScreen.route) })
         }
+        Spacer(modifier = Modifier.height(10.dp))
+
+        RowText(
+            text1 = "Forgot your ",
+            text2 = "Password?",
+            onClickText2 = {},
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+        RowText(
+            text1 = "New to ShopBee ",
+            text2 = "Register",
+            onClickText2 = { navController.navigate(Screens.RegScreen.name) },
+        )
     }
-
-
+}

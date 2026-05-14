@@ -24,17 +24,18 @@ fun SocialMediaBtn(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = MaterialTheme.colorScheme.onBackground
+    contentColor: Color = MaterialTheme.colorScheme.onBackground,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
-        modifier = modifier
-            .defaultMinSize(minWidth = 90.dp)
-            .height(44.dp)
-            .background(backgroundColor, RoundedCornerShape(10.dp))
-            .clickable { onClick() }
-            .padding(horizontal = 20.dp, vertical = 12.dp),
+        modifier =
+            modifier
+                .defaultMinSize(minWidth = 90.dp)
+                .height(44.dp)
+                .background(backgroundColor, RoundedCornerShape(10.dp))
+                .clickable { onClick() }
+                .padding(horizontal = 20.dp, vertical = 12.dp),
     ) {
         Text(
             text = name,
@@ -42,7 +43,7 @@ fun SocialMediaBtn(
             fontSize = 16.sp,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
 }

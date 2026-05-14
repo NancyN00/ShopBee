@@ -41,9 +41,7 @@ object ShopBeeModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(
-        auth: FirebaseAuth
-    ): AuthRepository {
+    fun provideAuthRepository(auth: FirebaseAuth): AuthRepository {
         return AuthRepository(auth)
     }
 }
